@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  const code = new URLSearchParams(window.location.search).get("code");
+
+  if (!code) {
+    alert("GitHub code not received");
+  }
+
+  fetch("http://localhost:5002/api/oauth/github", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ accessToken: code }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+      } else {
+        alert("GitHub login failed");
+      }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "brain": {
+    "api_url": "https://unseditious-gloria-soothfastly.ngrok-free.dev/generate",
+    "health_url": "https://unseditious-gloria-soothfastly.ngrok-free.dev/health",
+    "timeout_seconds": 10,
+    "retries": 1,
+    "auth_header": "Authorization",
+    "api_key_env": "BRAIN_API_KEY"
+  },
+  "backend": {
+    "base_url": "http://localhost:5002"
+  },
+  "python_server": {
+    "port": 9000
+  }
+}

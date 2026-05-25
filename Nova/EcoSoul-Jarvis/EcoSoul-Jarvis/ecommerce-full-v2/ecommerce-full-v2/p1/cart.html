@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="img/OG.jpg" />
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="cart">
+    <header>
+      <div class="top container">
+        <div class="logo">
+          <a href="index.html" rel="Homepage"> SocialCart </a>
+        </div>
+        <div class="search">
+          <input placeholder="Search products" />
+          <button>Search</button>
+        </div>
+        <a class="cart-link" href="cart.html"
+          >🛒 Cart <span class="badge" id="cartCount">0</span></a
+        >
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Your Cart</h1>
+      <div class="card" style="background: #fff">
+        <table class="cart-table" id="cartTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+        <div style="display: flex; justify-content: flex-end; margin-top: 16px">
+          <div class="summary">
+            <div class="muted" style="font-size: 13px">Total</div>
+            <div class="price" id="cartTotal">₹0</div>
+            <button
+              class="btn btn-alt"
+              style="width: auto; margin-top: 8px"
+              id="toCheckout"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section class="carousel">
+        <h2>Related products</h2>
+        <div class="rail" id="cartRelated"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,556 @@
+/* .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        } */
+/* h1 {
+            font-size: 2.8rem;
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        } */
+/* =================================== */
+/* Content Panel - Eco Glassmorphism */
+/* =================================== */
+/* .content-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            transition: transform 0.4s ease;
+        } */
+/* .content-panel:hover { transform: translateY(-8px); } */
+/* =================================== */
+/* Controls Bar */
+/* =================================== */
+.controls {
+  padding: 25px 30px;
+  background: linear-gradient(90deg, #f1f8e9, #e8f5e9);
+  border-bottom: 1px solid #c8e6c9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-box {
+  flex: 1 1 350px;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 14px 20px 14px 50px;
+  border: 2px solid #a5d6a7;
+  border-radius: 50px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.search-box input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+.search-box::before {
+  content: "🔍";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #4caf50;
+}
+.add-btn {
+  padding: 14px 35px;
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+  transition: all 0.4s ease;
+}
+.add-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+}
+/* =================================== */
+/* Payment Methods Grid */
+/* =================================== */
+.payment-methods {
+  padding: 40px 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  min-height: 500px;
+}
+.payment-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+.payment-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-color: #4caf50;
+}
+.payment-card.primary {
+  border: 3px solid #2e7d32;
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), white 70%);
+}
+.payment-card .logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  object-fit: contain;
+  background: #f1f8e9;
+  padding: 10px;
+}
+.payment-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+.payment-card .details {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+.payment-card .eco-benefit {
+  font-size: 0.9rem;
+  color: #4caf50;
+  font-style: italic;
+  margin-top: 10px;
+}
+.payment-card .status {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.status.primary {
+  background: #2e7d32;
+  color: white;
+}
+.payment-card .actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-edit {
+  background: #a5d6a7;
+  color: #1b5e20;
+}
+.btn-edit:hover {
+  background: #81c784;
+  transform: translateY(-3px);
+}
+.btn-delete {
+  background: #ef9a9a;
+  color: #c62828;
+}
+.btn-delete:hover {
+  background: #e57373;
+  transform: translateY(-3px);
+}
+.btn-set-primary {
+  background: #66bb6a;
+  color: white;
+  font-size: 0.9rem;
+}
+.btn-set-primary:hover {
+  background: #43a047;
+  transform: translateY(-3px);
+}
+/* =================================== */
+/* Empty State */
+/* =================================== */
+.empty-state {
+  text-align: center;
+  padding: 100px 20px;
+  color: #6c757d;
+}
+.empty-state h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+.empty-state p {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+/* =================================== */
+/* Modal - Eco Style */
+/* =================================== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  animation: modalPop 0.4s ease;
+}
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modal-header {
+  padding: 25px 30px;
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+}
+.modal-header h2 {
+  font-size: 1.8rem;
+}
+.close {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.close:hover {
+  transform: rotate(90deg);
+}
+.modal-body {
+  padding: 30px;
+}
+.form-group {
+  margin-bottom: 22px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #a5d6a7;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+.payment-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.payment-option {
+  text-align: center;
+  padding: 18px;
+  border: 2px solid #c8e6c9;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #f1f8e9;
+}
+.payment-option.active {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.1);
+  transform: scale(1.05);
+}
+.payment-option img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+.payment-option span {
+  font-weight: 600;
+  color: #2e7d32;
+}
+.modal-footer {
+  padding: 25px 30px;
+  background: #f1f8e9;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  border-top: 1px solid #c8e6c9;
+}
+.btn-cancel {
+  background: #a5d6a7;
+  color: #1b5e20;
+  padding: 12px 30px;
+}
+.btn-save {
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: white;
+  padding: 12px 40px;
+  font-weight: 600;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .payment-methods {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 30px 20px;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 20px;
+  }
+  .search-box {
+    flex: 1 1 auto;
+  }
+  .search-box input {
+    padding: 12px 16px 12px 40px;
+    font-size: 0.95rem;
+  }
+  .add-btn {
+    width: 100%;
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+  .payment-card {
+    padding: 20px;
+  }
+  .payment-card h3 {
+    font-size: 1.3rem;
+  }
+  .payment-card .actions {
+    gap: 10px;
+  }
+  .payment-page .modal-content {
+    max-width: 90%;
+    margin: 20px;
+  }
+  .payment-page .modal-header {
+    padding: 20px;
+  }
+  .payment-page .modal-footer {
+    padding: 20px;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls {
+    padding: 15px;
+    gap: 12px;
+  }
+  .search-box input {
+    padding: 10px 12px 10px 35px;
+    font-size: 0.9rem;
+  }
+  .add-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+  .payment-methods {
+    padding: 20px 15px;
+    gap: 15px;
+  }
+  .payment-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  .payment-card .logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+  .payment-card h3 {
+    font-size: 1.1rem;
+  }
+  .payment-card .details {
+    font-size: 0.9rem;
+  }
+  .payment-card .actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .btn-use,
+  .btn-edit,
+  .btn-delete {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+  .payment-page .modal-content {
+    max-width: 95%;
+    border-radius: 16px;
+  }
+  .payment-page .modal-header {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+  }
+  .payment-page .form-group {
+    margin-bottom: 16px;
+  }
+  .payment-page .form-group label {
+    font-size: 0.95rem;
+  }
+  .payment-page .form-group input,
+  .payment-page .form-group select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+  .payment-page .modal-footer {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .btn-save,
+  .btn-cancel {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .controls {
+    padding: 12px;
+  }
+  .payment-methods {
+    padding: 15px 10px;
+  }
+  .payment-card {
+    padding: 12px;
+  }
+  .search-box input {
+    font-size: 0.85rem;
+  }
+  .add-btn {
+    font-size: 0.9rem;
+    padding: 9px 16px;
+  }
+}
+/* Animations */
+.payment-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.payment-page .modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-page .modal.active {
+  display: flex;
+}
+
+.payment-page .modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 620px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+/* Header */
+.payment-page .modal-header {
+  padding: 25px 30px;
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Form */
+.payment-page .form-group {
+  margin-bottom: 22px;
+}
+
+.payment-page .form-group label {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.payment-page .form-group input,
+.payment-page .form-group select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #a5d6a7;
+}
+
+.payment-page .form-group input:focus,
+.payment-page .form-group select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+/* Footer */
+.payment-page .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 25px 30px;
+}

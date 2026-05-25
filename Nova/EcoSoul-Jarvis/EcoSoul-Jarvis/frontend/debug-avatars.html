@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avatar Debug Tool</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        color: #667eea;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .section {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 8px;
+      }
+      .section h3 {
+        margin-top: 0;
+        color: #333;
+      }
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 5px;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .output {
+        background: #1e1e1e;
+        color: #00ff00;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        max-height: 400px;
+        overflow-y: auto;
+        margin-top: 10px;
+      }
+      .warning {
+        background: #fff3cd;
+        border-left-color: #ffc107;
+        color: #856404;
+      }
+      .success {
+        background: #d4edda;
+        border-left-color: #28a745;
+        color: #155724;
+      }
+      .error {
+        background: #f8d7da;
+        border-left-color: #dc3545;
+        color: #721c24;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔍 Avatar System Debugger</h1>
+
+      <div class="section">
+        <h3>📊 Quick Status Check</h3>
+        <button onclick="checkEverything()">Run Complete Diagnostic</button>
+        <div id="quickStatus" class="output"></div>
+      </div>
+
+      <div class="section">
+        <h3>💾 LocalStorage Profile Pics</h3>
+        <button onclick="checkLocalStorage()">Check localStorage</button>
+        <button onclick="clearAllProfilePics()">Clear All Profile Pics</button>
+        <div id="localStorageOutput" class="output"></div>
+      </div>
+
+      <div class="section">
+        <h3>👥 State Users Data</h3>
+        <button onclick="checkStateUsers()">Check state.users</button>
+        <div id="stateUsersOutput" class="output"></div>
+      </div>
+
+      <div class="section">
+        <h3>💬 Messages & Avatars</h3>
+        <button onclick="checkMessages()">Check Messages</button>
+        <div id="messagesOutput" class="output"></div>
+      </div>
+
+      <div class="section warning">
+        <h3>⚡ Quick Fixes</h3>
+        <button onclick="forceRefreshAvatars()">
+          Force Refresh All Avatars
+        </button>
+        <button onclick="syncFromBackend()">Re-sync from Backend</button>
+        <button onclick="hardReset()">Hard Reset (Clear & Reload)</button>
+      </div>
+    </div>
+
+    <script>
+      function log(output, message, type = "info") {
+        const el = document.getElementById(output);
+        const color =
+          type === "error"
+            ? "#ff4444"
+            : type === "success"
+              ? "#00ff00"
+              : type === "warning"
+                ? "#ffaa00"
+                : "#00ff00";
+        el.innerHTML += `<div style="color: ${color}; margin: 5px 0;">${message}</div>`;
+      }
+
+      function clearLog(output) {
+        document.getElementById(output).innerHTML = "";
+      }
+
+      async function checkEverything() {
+        clearLog("quickStatus");
+        log("quickStatus", "=== COMPLETE DIAGNOSTIC ===", "success");
+
+        // Check if on social.html
+        if (!window.location.pathname.includes("social.html")) {
+          log("quickStatus", "❌ Not on social.html page!", "error");
+          log("quickStatus", "➡️ Please open social.html first", "warning");
+          return;
+        }
+
+        // Check if state exists
+        if (typeof state === "undefined") {
+          log("quickStatus", "❌ state object not found!", "error");
+          return;
+        }
+
+        log("quickStatus", "✅ state object exists", "success");
+        log(
+          "quickStatus",
+          `✅ Logged in as: ${state.me?.name || "Unknown"}`,
+          "success",
+        );
+        log("quickStatus", `✅ User ID: ${state.me?.id || "Unknown"}`, "info");
+        log(
+          "quickStatus",
+          `✅ My Avatar: ${state.me?.avatar || "Not set"}`,
+          "info",
+        );
+
+        // Check localStorage
+        const myProfilePic = localStorage.getItem(`profilePic_${state.me?.id}`);
+        if (myProfilePic) {
+          log(
+            "quickStatus",
+            `✅ localStorage has my profile pic: ${myProfilePic.substring(0, 50)}...`,
+            "success",
+          );
+        } else {
+          log(
+            "quickStatus",
+            `⚠️ No profile pic in localStorage for current user`,
+            "warning",
+          );
+        }
+
+        // Check all users
+        const userCount = Object.keys(state.users || {}).length;
+        log("quickStatus", `✅ ${userCount} users in state`, "info");
+
+        // Check messages
+        const msgCount = (state.messages || []).length;
+        log("quickStatus", `✅ ${msgCount} conversations loaded`, "info");
+
+        // Check posts
+        const postCount = (state.posts || []).length;
+        log("quickStatus", `✅ ${postCount} posts loaded`, "info");
+
+        log("quickStatus", "\n=== DIAGNOSTIC COMPLETE ===", "success");
+      }
+
+      function checkLocalStorage() {
+        clearLog("localStorageOutput");
+        log(
+          "localStorageOutput",
+          "=== LOCALSTORAGE PROFILE PICS ===",
+          "success",
+        );
+
+        const profilePics = Object.keys(localStorage)
+          .filter((key) => key.startsWith("profilePic_"))
+          .map((key) => ({
+            userId: key.replace("profilePic_", ""),
+            url: localStorage.getItem(key),
+          }));
+
+        if (profilePics.length === 0) {
+          log(
+            "localStorageOutput",
+            "⚠️ No profile pics stored in localStorage!",
+            "warning",
+          );
+          log(
+            "localStorageOutput",
+            "This means users haven't uploaded/changed their avatars yet",
+            "info",
+          );
+        } else {
+          log(
+            "localStorageOutput",
+            `✅ Found ${profilePics.length} profile pics:`,
+            "success",
+          );
+          profilePics.forEach((pic) => {
+            log("localStorageOutput", `\n📸 User ID: ${pic.userId}`, "info");
+            log(
+              "localStorageOutput",
+              `   URL: ${pic.url.substring(0, 80)}...`,
+              "info",
+            );
+          });
+        }
+      }
+
+      function clearAllProfilePics() {
+        if (
+          !confirm(
+            "Are you sure? This will clear all profile pics from localStorage!",
+          )
+        )
+          return;
+
+        clearLog("localStorageOutput");
+        const keys = Object.keys(localStorage).filter((k) =>
+          k.startsWith("profilePic_"),
+        );
+        keys.forEach((k) => localStorage.removeItem(k));
+        log(
+          "localStorageOutput",
+          `✅ Cleared ${keys.length} profile pics from localStorage`,
+          "success",
+        );
+        log(
+          "localStorageOutput",
+          "🔄 Refresh the page to reload from backend",
+          "warning",
+        );
+      }
+
+      function checkStateUsers() {
+        clearLog("stateUsersOutput");
+        if (typeof state === "undefined") {
+          log("stateUsersOutput", "❌ state not found", "error");
+          return;
+        }
+
+        log("stateUsersOutput", "=== STATE USERS ===", "success");
+        const users = state.users || {};
+        log(
+          "stateUsersOutput",
+          `Total users: ${Object.keys(users).length}`,
+          "info",
+        );
+
+        Object.values(users).forEach((user) => {
+          log("stateUsersOutput", `\n👤 ${user.name || "Unknown"}`, "success");
+          log("stateUsersOutput", `   ID: ${user.id}`, "info");
+          log(
+            "stateUsersOutput",
+            `   Avatar: ${user.avatar?.substring(0, 80) || "Not set"}...`,
+            "info",
+          );
+
+          const localStorageAvatar = localStorage.getItem(
+            `profilePic_${user.id}`,
+          );
+          if (localStorageAvatar) {
+            log(
+              "stateUsersOutput",
+              `   ✅ localStorage: ${localStorageAvatar.substring(0, 80)}...`,
+              "success",
+            );
+          } else {
+            log(
+              "stateUsersOutput",
+              `   ⚠️ No localStorage override`,
+              "warning",
+            );
+          }
+        });
+      }
+
+      function checkMessages() {
+        clearLog("messagesOutput");
+        if (typeof state === "undefined") {
+          log("messagesOutput", "❌ state not found", "error");
+          return;
+        }
+
+        log("messagesOutput", "=== MESSAGES & AVATARS ===", "success");
+        const messages = state.messages || [];
+        log(
+          "messagesOutput",
+          `Total conversations: ${messages.length}`,
+          "info",
+        );
+
+        messages.forEach((msg) => {
+          const userName =
+            msg.user?.name || state.users[msg.userId]?.name || "Unknown";
+          log(
+            "messagesOutput",
+            `\n💬 Conversation with: ${userName}`,
+            "success",
+          );
+          log("messagesOutput", `   User ID: ${msg.userId}`, "info");
+          log(
+            "messagesOutput",
+            `   Message Avatar: ${msg.user?.avatar?.substring(0, 60) || "Not set"}...`,
+            "info",
+          );
+
+          const stateAvatar = state.users[msg.userId]?.avatar;
+          if (stateAvatar) {
+            log(
+              "messagesOutput",
+              `   State Avatar: ${stateAvatar.substring(0, 60)}...`,
+              "info",
+            );
+          }
+
+          const localStorageAvatar = localStorage.getItem(
+            `profilePic_${msg.userId}`,
+          );
+          if (localStorageAvatar) {
+            log(
+              "messagesOutput",
+              `   ✅ localStorage Override: ${localStorageAvatar.substring(0, 60)}...`,
+              "success",
+            );
+          } else {
+            log("messagesOutput", `   ⚠️ No localStorage override`, "warning");
+          }
+        });
+      }
+
+      function forceRefreshAvatars() {
+        if (typeof renderAll === "function") {
+          renderAll();
+          alert("✅ Avatars refreshed! Check if they updated.");
+        } else {
+          alert(
+            "❌ renderAll() function not found. You must be on social.html page.",
+          );
+        }
+      }
+
+      async function syncFromBackend() {
+        alert(
+          "🔄 This will reload the page and re-fetch all data from backend...",
+        );
+        location.reload();
+      }
+
+      function hardReset() {
+        if (
+          !confirm(
+            "⚠️ This will clear ALL localStorage data and reload! Continue?",
+          )
+        )
+          return;
+        localStorage.clear();
+        alert("✅ localStorage cleared! Page will reload...");
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

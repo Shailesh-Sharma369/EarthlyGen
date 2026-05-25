@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Global Reset & Base Styles
+   ========================================================================== */
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* body {
+    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s; */
+
+/* 
+body.dark-mode {
+    background: #111827;
+    color: #e5e7eb; */
+
+/* ==========================================================================
+   Typography & Layout
+   ========================================================================== */
+
+/* .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+} */
+
+/* h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 2rem;
+} */
+
+/* body.dark-mode h1 {
+    color: #f3f4f6;
+} */
+
+/* ==========================================================================
+   Settings Panel
+   ========================================================================== */
+
+/* .content-panel {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: background-color 0.3s, box-shadow 0.3s;
+} */
+
+/* body.dark-mode .content-panel {
+    background: #1f2937;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+} */
+
+/* .settings-header {
+    background: #2563eb;
+    color: white;
+    padding: 1.8rem;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+} */
+
+.settings-body {
+  padding: 1.4rem;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* body.dark-mode .section h2 {
+    color: #f3f4f6;
+    border-bottom-color: #374151;
+} */
+
+/* ==========================================================================
+   Form Elements
+   ========================================================================== */
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* body.dark-mode .form-group label {
+    color: #9ca3af;
+} */
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+/* body.dark-mode .form-group input,
+body.dark-mode .form-group select {
+    background: #1f2937;
+    border-color: #4b5563;
+    color: #f3f4f6;
+} */
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================================================
+   Toggle Switch
+   ========================================================================== */
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.toggle label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* body.dark-mode .toggle label {
+    color: #9ca3af;
+} */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #9ca3af;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2e7d32;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+/* ==========================================================================
+   Button & Responsive
+   ========================================================================== */
+
+.save-btn {
+  display: block;
+  width: 200px;
+  margin: 2.5rem auto 0;
+  padding: 0.9rem;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.save-btn:hover {
+  background: #024702;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .settings-body {
+    padding: 1.4rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+
+  .save-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .section {
+    margin-bottom: 1.8rem;
+  }
+
+  .section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 7px 8px;
+    font-size: 0.9rem;
+  }
+
+  .save-btn {
+    width: 100%;
+    padding: 9px 14px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .settings-body {
+    padding: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .section h2 {
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 6px 6px;
+    font-size: 0.85rem;
+  }
+
+  .save-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+.settings-page .settings-body {
+  padding: 1.4rem;
+}
+
+.settings-page .section {
+  margin-bottom: 2.5rem;
+}
+
+.settings-page .section h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Form */
+.settings-page .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.settings-page .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.settings-page .form-group input,
+.settings-page .form-group select {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.settings-page .form-group input:focus,
+.settings-page .form-group select:focus {
+  border-color: #024702;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+/* Save button */
+.settings-page .save-btn {
+  display: block;
+  width: 200px;
+  margin: 2.5rem auto 0;
+  padding: 0.9rem;
+  background: #024702;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings-page .save-btn:hover {
+  background: #024702;
+}

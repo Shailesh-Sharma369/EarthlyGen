@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="img/OG.jpg" />
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="checkout">
+    <header>
+      <div class="top container">
+        <div class="logo">
+          <a href="index.html" rel="Homepage"> SocialCart </a>
+        </div>
+        <div class="search">
+          <input placeholder="Search products" />
+          <button>Search</button>
+        </div>
+        <a class="cart-link" href="cart.html"
+          >🛒 Cart <span class="badge" id="cartCount">0</span></a
+        >
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Checkout</h1>
+      <div class="product" style="grid-template-columns: 1.4fr 0.6fr">
+        <div class="card" style="background: #fff">
+          <h2>Shipping Address</h2>
+          <form id="shipForm">
+            <div style="display: grid; gap: 12px; margin-top: 12px">
+              <input type="text" name="name" placeholder="Full Name" required />
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+              >
+                <input type="text" name="city" placeholder="City" required />
+                <input
+                  type="text"
+                  name="pin"
+                  placeholder="Pincode"
+                  required
+                  pattern="\d{6}"
+                  title="6-digit PIN"
+                />
+              </div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                required
+                pattern="\d{10}"
+                title="10-digit phone"
+              />
+            </div>
+            <button
+              class="btn btn-alt"
+              type="submit"
+              style="width: auto; margin-top: 12px"
+            >
+              Place Order
+            </button>
+          </form>
+        </div>
+
+        <aside class="card" style="background: #fff">
+          <h2>Order Summary</h2>
+          <div id="orderSummary" class="list" style="margin-top: 12px"></div>
+          <div class="muted" style="font-size: 13px; margin-top: 12px">
+            Total
+          </div>
+          <div class="price" id="checkoutTotal">₹0</div>
+        </aside>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

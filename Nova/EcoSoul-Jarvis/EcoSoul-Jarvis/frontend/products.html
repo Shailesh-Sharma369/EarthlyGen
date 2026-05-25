@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="products-live.css" />
+    <link rel="icon" href="img/OG.jpg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="config.js"></script>
+    <!-- Profile Picture Sync (Real-time across all pages) -->
+    <script src="js/profilePicSync.js"></script>
+    <!-- Ruhi AI Assistant -->
+    <script src="ruhi.js" defer></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <img src="img/Rg.png" alt="Organic Store Logo" />
+          <div class="logo-text">SOCIALCART <span>STORE</span></div>
+        </div>
+        <nav class="nav-bar">
+          <ul class="nav-menu">
+            <li><a href="index.html#Home">Home</a></li>
+            <li><a href="index.html#Products">Products</a></li>
+            <li><a href="index.html#review">Reviews</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Contact">Contact</a></li>
+            <li>
+              <a
+                class="icon-round"
+                href="social.html"
+                style="color: #fff; background-color: #8bc34a"
+              >
+                <ion-icon class="fa-regular" name="id-card-sharp"></ion-icon>
+              </a>
+            </li>
+          </ul>
+          <div class="account-section">
+            <a
+              href="javascript:void(0)"
+              id="accountToggle"
+              class="account-icon"
+            >
+              <span class="icon-round">
+                <i class="fa-regular fa-user"></i>
+              </span>
+            </a>
+            <div class="account-dropdown" id="accountMenu">
+              <a href="acc.html">Dashboard</a>
+              <a href="acc.html">Orders</a>
+              <a href="acc.html">Wishlist</a>
+              <a href="acc.html">Settings</a>
+              <a href="homepage.html">Logout</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <script>
+      // Dropdown toggle logic
+      const toggleBtn = document.getElementById("accountToggle");
+      const menu = document.getElementById("accountMenu");
+
+      toggleBtn.addEventListener("click", () => {
+        const shown = menu.classList.toggle("show");
+        toggleBtn.setAttribute("aria-expanded", shown ? "true" : "false");
+      });
+
+      // Optional: close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!toggleBtn.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove("show");
+          toggleBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    </script>
+
+    <!-- Products Section -->
+    <section class="products-section" id="Products">
+      <div class="products-header">
+        <div class="products-title-section">
+          <h1>🌿 All Eco Products - Live</h1>
+          <p class="live-status">
+            <span class="live-indicator"></span>Real-time Inventory
+          </p>
+        </div>
+
+        <div class="products-filters">
+          <input
+            type="text"
+            id="searchProducts"
+            placeholder="🔍 Search products..."
+            class="search-box"
+          />
+
+          <select id="categoryFilter" class="filter-select">
+            <option value="">All Categories</option>
+            <option value="bags">Bags</option>
+            <option value="beauty">Beauty</option>
+            <option value="bottles">Bottles</option>
+            <option value="cosmetics">Cosmetics</option>
+            <option value="fitness">Fitness</option>
+            <option value="food & beverage">Food & Beverage</option>
+            <option value="gardening">Gardening</option>
+            <option value="health">Health</option>
+            <option value="home & kitchen">Home & Kitchen</option>
+            <option value="home care">Home Care</option>
+            <option value="lifestyle">Lifestyle</option>
+            <option value="office">Office</option>
+            <option value="personal care">Personal Care</option>
+            <option value="pet care">Pet Care</option>
+            <option value="cooking / hair oils">Cooking / Hair Oils</option>
+            <option value="other">Other</option>
+          </select>
+
+          <select id="priceFilter" class="filter-select">
+            <option value="">All Prices</option>
+            <option value="100-500">₹100 - ₹500</option>
+            <option value="500-1000">₹500 - ₹1000</option>
+            <option value="1000+">₹1000+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="all-products">
+        <div class="loading-skeleton">Loading products...</div>
+      </div>
+    </section>
+
+    <script type="module">
+      import {
+        addProductToCart,
+        isUserLoggedIn,
+        updateCreditsDisplay,
+      } from "./cartApi.js";
+
+      let allProducts = [];
+      const API = "http://localhost:5002/api";
+
+      // ==================== LOAD ALL PRODUCTS ====================
+      async function loadAllProducts() {
+        try {
+          const res = await fetch(`${API}/products`);
+          const data = await res.json();
+
+          if (!data.success) {
+            console.error("Failed to load products");
+            document.getElementById("all-products").innerHTML =
+              `<p style="color: red; grid-column: 1/-1; text-align: center;">Failed to load products. Please refresh.</p>`;
+            return;
+          }
+
+          allProducts = data.products || [];
+          renderProducts(allProducts);
+        } catch (error) {
+          console.error("Error loading products:", error);
+          document.getElementById("all-products").innerHTML =
+            `<p style="color: red; grid-column: 1/-1; text-align: center;">Error loading products. Please refresh.</p>`;
+          return;
+        }
+        // Socket setup is outside the try-catch so a socket.io failure
+        // does not overwrite the already-rendered product grid.
+        setupSocketListeners();
+      }
+
+      // ==================== RENDER PRODUCTS ====================
+      function renderProducts(products) {
+        const container = document.getElementById("all-products");
+
+        if (products.length === 0) {
+          container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 40px;">No products found</p>`;
+          return;
+        }
+
+        container.innerHTML = products
+          .map((p) => {
+            const stock = p.stock || 0;
+            const inStock = stock > 0;
+            const stockPercentage = Math.min(100, (stock / 50) * 100);
+            const oldPrice = p.oldPrice || p["old price"] || p.old_price;
+            const discount = oldPrice
+              ? Math.round(((oldPrice - p.price) / oldPrice) * 100)
+              : 0;
+
+            return `
+            <div class="product-card ${!inStock ? "out-of-stock" : ""}" data-product-id="${p._id}">
+              <div class="product-image-wrapper">
+                <img src="${p.image}" alt="${p.name}" class="product-image" />
+                
+                ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ""}
+                
+                <div class="product-stock-bar">
+                  <div class="stock-fill" style="width: ${stockPercentage}%"></div>
+                </div>
+                <span class="stock-text ${inStock ? "in-stock" : "out-of-stock"}">
+                  ${inStock ? `📦 ${stock} in stock` : "Out of Stock"}
+                </span>
+              </div>
+
+              <div class="product-info">
+                <h3 class="product-title">${p.name}</h3>
+                
+                ${p.category ? `<p class="product-category">${p.category}</p>` : ""}
+                
+                ${p.description ? `<p class="product-description">${p.description.substring(0, 50)}...</p>` : ""}
+                
+                <div class="product-price">
+                  <span class="current-price">₹${p.price}</span>
+                  ${oldPrice ? `<span class="old-price">₹${oldPrice}</span>` : ""}
+                </div>
+
+                ${p.eco_impact ? `<p class="eco-impact">🌿 ${p.eco_impact}</p>` : ""}
+
+                <div class="product-rating">
+                  <span class="stars">⭐ 4.5</span>
+                  <span class="reviews">(${Math.floor(Math.random() * 200) + 10} reviews)</span>
+                </div>
+
+                <button class="add-to-cart-btn ${!inStock ? "disabled" : ""}" 
+                        data-product-id="${p._id}"
+                        ${!inStock ? "disabled" : ""}>
+                  ${inStock ? "🛒 Add to Cart" : "❌ Out of Stock"}
+                </button>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      // ==================== SOCKET.IO - LIVE UPDATES ====================
+      function setupSocketListeners() {
+        // Guard: socket.io CDN may be blocked by CSP or network restrictions
+        if (typeof io !== "function") {
+          console.warn(
+            "⚠️ socket.io not loaded – live inventory updates disabled",
+          );
+          return;
+        }
+        const socket = io("http://localhost:5002");
+
+        socket.on("inventory-updated", (data) => {
+          console.log("📊 INVENTORY UPDATE:", data);
+
+          const product = allProducts.find((p) => p._id === data.productId);
+          if (product) {
+            product.stock = data.newStock;
+            renderProducts(allProducts);
+            showLiveNotification(
+              `${data.productName} stock updated to ${data.newStock}!`,
+            );
+          }
+        });
+
+        socket.on("product-added", (data) => {
+          console.log("✨ NEW PRODUCT:", data);
+          allProducts.push(data.product);
+          renderProducts(allProducts);
+          showLiveNotification(`New product added: ${data.product.name}!`);
+        });
+
+        socket.on("product-removed", (data) => {
+          console.log("🗑️ PRODUCT REMOVED:", data);
+          allProducts = allProducts.filter((p) => p._id !== data.productId);
+          renderProducts(allProducts);
+          showLiveNotification(`Product removed: ${data.productName}`);
+        });
+      }
+
+      // ==================== FILTERS ====================
+      function filterProducts() {
+        const searchText = document
+          .getElementById("searchProducts")
+          .value.toLowerCase();
+        const categoryValue = document.getElementById("categoryFilter").value;
+        const priceRange = document.getElementById("priceFilter").value;
+
+        let filtered = allProducts.filter((p) => {
+          const matchesSearch =
+            p.name.toLowerCase().includes(searchText) ||
+            (p.description && p.description.toLowerCase().includes(searchText));
+          const matchesCategory =
+            !categoryValue ||
+            (p.category && p.category.toLowerCase() === categoryValue);
+
+          let matchesPrice = true;
+          if (priceRange === "100-500")
+            matchesPrice = p.price >= 100 && p.price <= 500;
+          if (priceRange === "500-1000")
+            matchesPrice = p.price >= 500 && p.price <= 1000;
+          if (priceRange === "1000+") matchesPrice = p.price >= 1000;
+
+          return matchesSearch && matchesCategory && matchesPrice;
+        });
+
+        renderProducts(filtered);
+      }
+
+      document
+        .getElementById("searchProducts")
+        .addEventListener("input", filterProducts);
+      document
+        .getElementById("categoryFilter")
+        .addEventListener("change", filterProducts);
+      document
+        .getElementById("priceFilter")
+        .addEventListener("change", filterProducts);
+
+      // ==================== ADD TO CART ====================
+      document.addEventListener("click", async (e) => {
+        if (!e.target.classList.contains("add-to-cart-btn")) return;
+
+        if (e.target.disabled) {
+          alert("This product is out of stock!");
+          return;
+        }
+
+        if (!isUserLoggedIn()) {
+          alert("Please login first");
+          window.location.href = "homepage.html";
+          return;
+        }
+
+        const productId = e.target.dataset.productId;
+        try {
+          const res = await addProductToCart(productId);
+          if (res.success) {
+            showLiveNotification("✅ Product added to cart!", "success");
+
+            // 🔥 IMMEDIATELY UPDATE CREDITS (don't wait 5 seconds)
+            if (res.ecoCredits !== undefined) {
+              const creditsDisplay = document.getElementById(
+                "profileCreditsDisplay",
+              );
+              if (creditsDisplay) {
+                creditsDisplay.textContent = res.ecoCredits;
+                console.log(`🌱 Credits updated INSTANTLY: ${res.ecoCredits}`);
+              }
+              const navCreditsDisplay =
+                document.getElementById("navCreditsDisplay");
+              if (navCreditsDisplay) {
+                navCreditsDisplay.textContent = res.ecoCredits;
+              }
+              localStorage.setItem("lastEcoCredits", res.ecoCredits);
+            }
+
+            // Update eco-credits display in real-time
+            await updateCreditsDisplay();
+
+            // Trigger dashboard notification if available
+            if (window.addNotification) {
+              window.addNotification(
+                "5 Credits Deducted 🌱",
+                `Item added to cart - Balance: ${res.ecoCredits || 100}`,
+                "success",
+              );
+            }
+          } else {
+            showLiveNotification(
+              res.message || "Failed to add to cart",
+              "error",
+            );
+          }
+        } catch (error) {
+          console.error("Cart error:", error);
+          showLiveNotification("Error adding to cart", "error");
+        }
+      });
+
+      // ==================== NOTIFICATIONS ====================
+      function showLiveNotification(message, type = "info") {
+        const notification = document.createElement("div");
+        notification.className = `live-notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      // ==================== INITIAL LOAD + URL PARAM SEARCH ====================
+      document.addEventListener("DOMContentLoaded", () => {
+        // Pre-fill search box from ?search= URL param (used by Ruhi AI navigation)
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get("search");
+        if (searchParam) {
+          const searchInput = document.getElementById("searchProducts");
+          if (searchInput) searchInput.value = searchParam;
+        }
+        loadAllProducts().then(() => {
+          // Trigger filter AFTER products are loaded if a search param was present
+          if (searchParam) filterProducts();
+        });
+      });
+    </script>
+
+    <style>
+      body {
+        font-family: "Rubik", Arial, sans-serif;
+        background: #f9f9f9;
+      }
+
+      .products-section {
+        padding: 80px 0;
+        background-color: white;
+        margin-bottom: 80px;
+      }
+
+      .products-section h1 {
+        text-align: center;
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #2e7d32;
+        letter-spacing: 1px;
+        margin: 40px 0 20px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 40px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px;
+      }
+
+      .product-card {
+        background-color: whitesmoke;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .product-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .product-title {
+        margin: 10px 0 5px 0;
+        font-weight: 700;
+        color: #333;
+        font-size: 16px;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 8px 0;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .price {
+        font-weight: 700;
+        color: #333;
+        font-size: 18px;
+      }
+
+      .old-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 14px;
+      }
+
+      .eco-impact {
+        font-size: 12px;
+        color: #4caf50;
+        line-height: 1.5;
+        margin: 8px 0;
+        text-align: center;
+      }
+
+      .add-to-cart-btn {
+        color: #fff;
+        background-color: #7cb342;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background-color 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.1s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #689f38;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+        transform: translateY(-1px);
+      }
+
+      .add-to-cart-btn:active {
+        background-color: #558b2f;
+        transform: translateY(1px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .products-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .products-section h1 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .products-section h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </body>
+</html>

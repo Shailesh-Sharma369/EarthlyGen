@@ -1,0 +1,447 @@
+<!-- ============================================================
+     WEBRTC VIDEO/VOICE CALLING - HTML SNIPPETS
+     ============================================================
+     
+     Copy these snippets into your social.html as indicated
+-->
+
+<!-- ============================================================
+     SNIPPET 1: Call Buttons (Add to Message Header)
+     ============================================================
+     
+     Location: In your message interface header, next to the 
+     message user's name or in a controls area
+-->
+
+<div class="flex items-center gap-2 ml-auto">
+  <!-- Voice Call Button -->
+  <button
+    id="voiceCallBtn"
+    class="p-2.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition duration-200"
+    title="Start Voice Call"
+  >
+    <i data-lucide="phone" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+  </button>
+
+  <!-- Video Call Button -->
+  <button
+    id="videoCallBtn"
+    class="p-2.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition duration-200"
+    title="Start Video Call"
+  >
+    <i data-lucide="video" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+  </button>
+
+  <!-- Info Badge (Optional) -->
+  <span
+    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded dark:bg-green-900 dark:text-green-200"
+  >
+    Ready
+  </span>
+</div>
+
+<!-- ============================================================
+     SNIPPET 2: Incoming Call Modal (Alternative Design)
+     ============================================================
+     
+     The callUIManager.js automatically creates this, but you
+     can customize the appearance by modifying the showIncomingCall() 
+     method in callUIManager.js
+-->
+
+<div
+  id="incomingCallModal"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div
+    class="bg-white dark:bg-gray-800 rounded-2xl w-96 p-8 shadow-2xl animate-slideIn"
+  >
+    <!-- Close Button -->
+    <button
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+    >
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Avatar -->
+    <div class="flex justify-center mb-6">
+      <img
+        id="callerAvatar"
+        class="w-32 h-32 rounded-full object-cover border-4 border-green-500 shadow-lg"
+        alt="Caller"
+      />
+    </div>
+
+    <!-- Caller Info -->
+    <div class="text-center mb-6">
+      <h2
+        id="callerName"
+        class="text-2xl font-bold text-gray-900 dark:text-white mb-2"
+      >
+        John Doe
+      </h2>
+      <p id="callType" class="text-gray-600 dark:text-gray-400">
+        📞 Voice Call Incoming
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">Calling...</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex gap-4 justify-center">
+      <!-- Accept Button -->
+      <button
+        id="acceptCallBtn"
+        class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold transition"
+      >
+        <i data-lucide="phone"></i>
+        Accept
+      </button>
+
+      <!-- Reject Button -->
+      <button
+        id="rejectCallBtn"
+        class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition"
+      >
+        <i data-lucide="phone-off"></i>
+        Decline
+      </button>
+    </div>
+
+    <!-- Additional Options -->
+    <div
+      class="mt-6 flex justify-center gap-4 text-gray-500 dark:text-gray-400"
+    >
+      <button
+        title="Mute"
+        class="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+      >
+        <i data-lucide="mic-off" class="w-5 h-5"></i>
+      </button>
+      <button
+        title="Message"
+        class="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+      >
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SNIPPET 3: Active Call Interface (Full Screen)
+     ============================================================
+     
+     The callUIManager.js creates this automatically
+-->
+
+<div id="activeCallModal" class="fixed inset-0 bg-black flex flex-col z-50">
+  <!-- Video Area -->
+  <div class="flex-1 relative overflow-hidden bg-black">
+    <!-- Remote Video (Main) -->
+    <video
+      id="remoteVideo"
+      autoplay
+      playsinline
+      class="w-full h-full object-cover"
+      poster="https://via.placeholder.com/800x600/222/666?text=Waiting+for+video"
+    ></video>
+
+    <!-- Loading State (Show while connecting) -->
+    <div
+      id="callLoadingState"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50"
+    >
+      <div
+        class="animate-spin rounded-full h-16 w-16 border-4 border-green-600 border-t-transparent"
+      ></div>
+      <p class="text-white mt-4">Connecting...</p>
+    </div>
+
+    <!-- Remote User Info Badge -->
+    <div
+      class="absolute top-4 left-4 bg-black bg-opacity-70 px-4 py-3 rounded-lg text-white z-10"
+    >
+      <p class="font-semibold text-lg">John Doe</p>
+      <p id="callDuration" class="text-sm text-gray-300 font-mono">00:00</p>
+      <p id="connectionQuality" class="text-xs text-green-400 mt-1">
+        📡 Connection Optimal
+      </p>
+    </div>
+
+    <!-- Local Video (Picture-in-Picture) -->
+    <video
+      id="localVideo"
+      autoplay
+      muted
+      playsinline
+      class="absolute bottom-4 right-4 w-36 h-48 bg-gray-800 rounded-lg border-2 border-white object-cover shadow-2xl"
+      poster="https://via.placeholder.com/288/384/222/999?text=Your+Video"
+    ></video>
+
+    <!-- End Call on Error -->
+    <div
+      id="callErrorState"
+      class="absolute inset-0 bg-red-600 bg-opacity-90 flex flex-col items-center justify-center hidden"
+    >
+      <i data-lucide="alert-circle" class="w-16 h-16 text-white mb-4"></i>
+      <p class="text-white text-xl font-semibold mb-2">Call Failed</p>
+      <p id="errorMessage" class="text-white text-center mb-6">
+        Connection lost or dropped
+      </p>
+      <button
+        id="errorEndCallBtn"
+        class="bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Control Bar -->
+  <div class="bg-gray-900 px-6 py-4">
+    <div class="flex justify-center items-center gap-6">
+      <!-- Microphone Toggle -->
+      <button
+        id="muteAudioBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Mute microphone (M)"
+      >
+        <i data-lucide="mic" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Camera Toggle -->
+      <button
+        id="toggleVideoBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Toggle camera (V)"
+      >
+        <i data-lucide="video" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Speaker Control -->
+      <button
+        id="speakerBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Speaker volume"
+      >
+        <i data-lucide="volume-2" class="w-6 h-6"></i>
+      </button>
+
+      <!-- In-Call Chat -->
+      <button
+        id="chatToggleBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Open chat"
+      >
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Screen Share -->
+      <button
+        id="screenShareBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Share screen"
+      >
+        <i data-lucide="monitor" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Recording (Optional) -->
+      <button
+        id="recordBtn"
+        class="p-4 bg-gray-700 hover:bg-gray-600 text-white rounded-full transition transform hover:scale-105"
+        title="Record call"
+      >
+        <i data-lucide="circle-dot" class="w-6 h-6"></i>
+      </button>
+
+      <!-- End Call (Red Button) -->
+      <button
+        id="endCallBtn"
+        class="p-4 bg-red-600 hover:bg-red-700 text-white rounded-full transition transform hover:scale-105 ml-4"
+        title="End call (Esc)"
+      >
+        <i data-lucide="phone-off" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Control Labels (Optional) -->
+    <div class="flex justify-center gap-12 mt-2 text-gray-400 text-xs">
+      <span>Mute</span>
+      <span>Camera</span>
+      <span>Speaker</span>
+      <span>Chat</span>
+      <span>Share</span>
+      <span>Record</span>
+      <span></span>
+      <span>End</span>
+    </div>
+
+    <!-- Stats Display (Optional - for debugging) -->
+    <div
+      id="callStats"
+      class="hidden mt-4 grid grid-cols-4 gap-4 text-gray-400 text-xs"
+    >
+      <div>📡 <span id="bitrate">--</span> kbps</div>
+      <div>📊 <span id="paketloss">--%</span></div>
+      <div>⏱️ <span id="latency">--</span> ms</div>
+      <div>📹 <span id="frameRate">--</span> fps</div>
+    </div>
+  </div>
+
+  <!-- Chat Panel (Collapsed) -->
+  <div
+    id="callChatPanel"
+    class="hidden bg-gray-800 max-h-48 flex flex-col border-t border-gray-700"
+  >
+    <!-- Chat Header -->
+    <div
+      class="flex justify-between items-center px-4 py-2 border-b border-gray-700"
+    >
+      <p class="text-white font-semibold">Chat</p>
+      <button
+        onclick="
+          document.getElementById('callChatPanel').classList.add('hidden')
+        "
+        class="text-gray-400 hover:text-white"
+      >
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="callChatMessages" class="flex-1 overflow-y-auto p-3 space-y-2">
+      <!-- Messages will be added here -->
+    </div>
+
+    <!-- Chat Input -->
+    <div class="flex gap-2 p-3 border-t border-gray-700">
+      <input
+        type="text"
+        id="callChatInput"
+        placeholder="Type a message..."
+        class="flex-1 bg-gray-700 text-white px-3 py-2 rounded text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        onkeypress="
+          if (event.key === 'Enter') window.callUIManager.sendCallMessage();
+        "
+      />
+      <button
+        onclick="window.callUIManager.sendCallMessage()"
+        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-semibold transition"
+      >
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SNIPPET 4: Keyboard Shortcuts (Add to your JS)
+     ============================================================
+-->
+
+<script>
+  document.addEventListener("keydown", (e) => {
+    if (!document.getElementById("activeCallModal")) return;
+
+    switch (e.key) {
+      case "m":
+      case "M":
+        document.getElementById("muteAudioBtn")?.click();
+        break;
+      case "v":
+      case "V":
+        document.getElementById("toggleVideoBtn")?.click();
+        break;
+      case "Escape":
+        document.getElementById("endCallBtn")?.click();
+        break;
+    }
+  });
+</script>
+
+<!-- ============================================================
+     SNIPPET 5: Notification Toast (For Call Alerts)
+     ============================================================
+-->
+
+<div
+  id="callNotification"
+  class="fixed bottom-6 right-6 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-40 animate-slideIn"
+>
+  <div class="flex items-center gap-3">
+    <i data-lucide="check-circle" class="w-5 h-5"></i>
+    <span>Call connected with John Doe</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     SNIPPET 6: Call Handling Examples
+     ============================================================
+
+     1. MINIMAL SETUP (Voice call only):
+     
+        <button id="voiceCallBtn">Call</button>
+        
+        document.getElementById("voiceCallBtn").addEventListener("click", () => {
+          webrtcManager.initiateCall("user_id", "User Name", "audio");
+        });
+
+
+     2. FULL SETUP (Both audio and video):
+     
+        <button id="voiceCallBtn">Voice</button>
+        <button id="videoCallBtn">Video</button>
+        
+        document.getElementById("voiceCallBtn").addEventListener("click", () => {
+          webrtcManager.initiateCall("user_id", "User Name", "audio");
+        });
+        
+        document.getElementById("videoCallBtn").addEventListener("click", () => {
+          webrtcManager.initiateCall("user_id", "User Name", "both");
+        });
+
+
+     3. INTEGRATION WITH CHAT:
+     
+        <!-- In your message header -->
+<div class="message-header">
+  <h3>{{ chatUser.name }}</h3>
+  <div class="ml-auto">
+    <button id="voiceCallBtn">📞</button>
+    <button id="videoCallBtn">📹</button>
+  </div>
+</div>
+
+Then handle with your existing chat logic... -->
+
+<!-- ============================================================
+     TIPS & CUSTOMIZATION
+     ============================================================
+
+     1. STYLING:
+        - Change button colors by modifying class names
+        - Update icons by changing data-lucide values
+        - Customize modal background/opacity
+        
+     2. POSITIONING:
+        - Use absolute/fixed positioning to place elements
+        - Adjust z-index for layering
+        - Use grid/flex for responsive layouts
+        
+     3. DARK MODE:
+        - Add dark: prefixes for dark theme support
+        - Use dark:bg-gray-800, dark:text-white, etc.
+        - Test color contrast ratios
+        
+     4. ANIMATIONS:
+        - animate-slideIn already defined in style.css
+        - Add hover:scale-105 for interactive effects
+        - Use transition-all for smooth changes
+        
+     5. ACCESSIBILITY:
+        - Add title attributes to buttons
+        - Use semantic HTML
+        - Include keyboard shortcuts (M, V, Esc)
+        - Add aria-labels for screen readers
+
+-->

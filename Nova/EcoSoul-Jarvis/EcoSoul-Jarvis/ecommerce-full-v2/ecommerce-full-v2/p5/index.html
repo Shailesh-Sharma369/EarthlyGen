@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="img/OG.jpg" />
+    <title>Scalp Massager – Product Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="product">
+    <header>
+      <div class="top container">
+        <div class="logo">
+          <a href="index.html" rel="Homepage"> SocialCart </a>
+        </div>
+        <div class="search">
+          <input placeholder="Search products" />
+          <button>Search</button>
+        </div>
+        <a class="cart-link" href="cart.html"
+          >🛒 Cart <span class="badge" id="cartCount">0</span></a
+        >
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="muted" style="margin: 12px 0 16px; font-size: 14px">
+        Health & Personal Care › Massage & Relaxation › Manual Massage Tools ›
+        Scalp Massagers
+      </nav>
+
+      <section class="product">
+        <!-- Gallery -->
+        <div class="gallery">
+          <div class="thumbs" id="thumbs"></div>
+          <div class="main-photo" id="mainPhoto">
+            <img
+              alt="Scalp Massager photo"
+              id="mainImg"
+              src="img/grocery.jpg"
+            />
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="details">
+          <h1 id="pTitle"></h1>
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span class="muted">4.1 | 1,552 ratings</span>
+          </div>
+          <div class="price">
+            <span id="pPrice"></span><span class="strike" id="pMRP"></span>
+          </div>
+          <div class="badge-row">
+            <span class="pill">Inclusive of all taxes</span>
+            <span class="pill">Top Brand</span>
+            <span class="pill">Amazon Delivered</span>
+            <span class="pill">Secure transaction</span>
+          </div>
+          <ul class="list">
+            <li>
+              <span class="chip">Offer</span> Save 5% with select credit cards.
+            </li>
+            <li>
+              <span class="chip">Bank</span> Flat ₹300 instant discount with
+              HDFC CC EMI.
+            </li>
+            <li><span class="chip">Warranty</span> 10 days replacement.</li>
+          </ul>
+
+          <div class="fbt">
+            <h2>Frequently bought together</h2>
+            <div class="fbt-grid" id="fbtGrid"></div>
+            <div class="sum">
+              <div>
+                <div class="muted" style="font-size: 13px">
+                  Selected total price
+                </div>
+                <div class="price" id="fbtTotal">₹0</div>
+              </div>
+              <button class="btn" id="addAll">Add all to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA card -->
+        <aside class="cta-card">
+          <div class="price" id="ctaPrice">₹0</div>
+          <div class="muted">In stock • Delivered by Amazon</div>
+          <button class="btn" id="addMain">Add to Cart</button>
+          <button class="btn btn-alt" id="buyNow">Buy Now</button>
+          <ul class="list" style="margin-top: 12px">
+            <li>Delivery to <strong>Mumbai 400007</strong></li>
+            <li>Secure transaction</li>
+            <li>Sold by <strong>CraftLady</strong></li>
+          </ul>
+        </aside>
+      </section>
+
+      <!-- Related carousel -->
+      <section class="carousel">
+        <h2>Related products (with free delivery on eligible orders)</h2>
+        <div class="rail-wrap">
+          <button class="nav-btn nav-prev" aria-label="Prev" id="prevBtn">
+            ‹
+          </button>
+          <div class="rail" id="rail"></div>
+          <button class="nav-btn nav-next" aria-label="Next" id="nextBtn">
+            ›
+          </button>
+        </div>
+      </section>
+
+      <footer>
+        This demo shows a product page layout with a gallery, pricing, a
+        "Frequently Bought Together" selector with live total, and a
+        related-products carousel.
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

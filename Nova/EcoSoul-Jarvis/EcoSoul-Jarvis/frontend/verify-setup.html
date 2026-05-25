@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify EcoSoul Setup</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 28px;
+      }
+      .test-section {
+        margin-bottom: 25px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        background: #f9f9f9;
+      }
+      .test-section h2 {
+        color: #667eea;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+      button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s;
+        margin: 5px;
+      }
+      button:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      .result {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 1.6;
+        font-family: "Courier New", monospace;
+      }
+      .success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border-left: 4px solid #4caf50;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+        border-left: 4px solid #f44336;
+      }
+      .loading {
+        background: #e3f2fd;
+        color: #1976d2;
+        border-left: 4px solid #2196f3;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔍 EcoSoul System Verification</h1>
+
+      <div class="grid-2">
+        <!-- TEST 1: Backend Server -->
+        <div class="test-section">
+          <h2>1️⃣ Backend Server Status</h2>
+          <button onclick="testBackendServer()">Test Server Connection</button>
+          <div id="serverResult"></div>
+        </div>
+
+        <!-- TEST 2: Products API -->
+        <div class="test-section">
+          <h2>2️⃣ Products API</h2>
+          <button onclick="testProductsAPI()">Fetch Products</button>
+          <div id="productsResult"></div>
+        </div>
+
+        <!-- TEST 3: Authentication -->
+        <div class="test-section">
+          <h2>3️⃣ Authentication Check</h2>
+          <button onclick="testAuth()">Check Auth Token</button>
+          <div id="authResult"></div>
+        </div>
+
+        <!-- TEST 4: Cart API -->
+        <div class="test-section">
+          <h2>4️⃣ Cart API (if logged in)</h2>
+          <button onclick="testCartAPI()">Test Cart Endpoint</button>
+          <div id="cartResult"></div>
+        </div>
+
+        <!-- TEST 5: DOM Elements -->
+        <div class="test-section">
+          <h2>5️⃣ DOM Elements Check</h2>
+          <button onclick="testDOMElements()">Check Page Elements</button>
+          <div id="domResult"></div>
+        </div>
+
+        <!-- TEST 6: localStorage -->
+        <div class="test-section">
+          <h2>6️⃣ LocalStorage Check</h2>
+          <button onclick="testLocalStorage()">Check Storage</button>
+          <div id="storageResult"></div>
+        </div>
+      </div>
+
+      <!-- RESULTS SUMMARY -->
+      <div
+        class="test-section"
+        style="margin-top: 30px; background: #fff9e6; border: 2px solid #ffc107"
+      >
+        <h2>📋 Summary</h2>
+        <div id="summaryResult"></div>
+      </div>
+    </div>
+
+    <script>
+      // ============ TEST 1: Server Connection ============
+      async function testBackendServer() {
+        const resultDiv = document.getElementById("serverResult");
+        resultDiv.innerHTML =
+          '<div class="result loading">⏳ Testing server connection...</div>';
+
+        try {
+          const response = await fetch("http://localhost:5002/api/health", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (response.ok) {
+            resultDiv.innerHTML = `<div class="result success">✅ Server is RUNNING<br>Status: ${response.status}<br>Endpoint: http://localhost:5002</div>`;
+          } else {
+            resultDiv.innerHTML = `<div class="result error">❌ Server responded with ${response.status}</div>`;
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="result error">❌ Cannot connect to server<br>Error: ${error.message}<br>Make sure Node.js server is running on port 5002</div>`;
+        }
+      }
+
+      // ============ TEST 2: Products API ============
+      async function testProductsAPI() {
+        const resultDiv = document.getElementById("productsResult");
+        resultDiv.innerHTML =
+          '<div class="result loading">⏳ Fetching products...</div>';
+
+        try {
+          const response = await fetch(
+            "http://localhost:5002/api/products?limit=5",
+          );
+          const data = await response.json();
+
+          if (data.success && data.products) {
+            const count = data.products.length;
+            const sampleProduct = data.products[0];
+            resultDiv.innerHTML = `<div class="result success">✅ API Working<br>Products found: ${count}<br>Sample: <strong>${sampleProduct.name}</strong> (₹${sampleProduct.price})</div>`;
+          } else {
+            resultDiv.innerHTML = `<div class="result error">❌ API Error: ${data.message || "No products"}</div>`;
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="result error">❌ API Request Failed<br>Error: ${error.message}</div>`;
+        }
+      }
+
+      // ============ TEST 3: Authentication ============
+      function testAuth() {
+        const resultDiv = document.getElementById("authResult");
+        const token = localStorage.getItem("token");
+        const user = localStorage.getItem("user");
+
+        if (token) {
+          const decoded = JSON.parse(atob(token.split(".")[1]));
+          resultDiv.innerHTML = `<div class="result success">✅ User Logged In<br>User: ${decoded.email}<br>Token valid until: ${new Date(decoded.exp * 1000).toLocaleString()}</div>`;
+        } else {
+          resultDiv.innerHTML = `<div class="result error">⚠️  Not Logged In<br>No token found in localStorage<br>Cart API will not work without login</div>`;
+        }
+      }
+
+      // ============ TEST 4: Cart API ============
+      async function testCartAPI() {
+        const resultDiv = document.getElementById("cartResult");
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          resultDiv.innerHTML = `<div class="result error">❌ Not logged in<br>Please login first to test cart API</div>`;
+          return;
+        }
+
+        resultDiv.innerHTML =
+          '<div class="result loading">⏳ Testing cart API...</div>';
+
+        try {
+          const response = await fetch("http://localhost:5002/api/cart", {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const data = await response.json();
+
+          if (response.ok) {
+            const itemCount = data.items ? data.items.length : 0;
+            resultDiv.innerHTML = `<div class="result success">✅ Cart API Working<br>Items in cart: ${itemCount}</div>`;
+          } else {
+            resultDiv.innerHTML = `<div class="result error">❌ Cart API Error: ${data.message}</div>`;
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="result error">❌ Cart API Failed<br>Error: ${error.message}</div>`;
+        }
+      }
+
+      // ============ TEST 5: DOM Elements ============
+      function testDOMElements() {
+        const resultDiv = document.getElementById("domResult");
+        const checks = [];
+
+        const elementsToCheck = {
+          productsGrid: "Products container",
+          searchProductsHome: "Search input",
+          categoryFilterHome: "Category filter",
+          priceFilterHome: "Price filter",
+        };
+
+        let allFound = true;
+        let html = '<div class="result success">';
+
+        for (const [id, name] of Object.entries(elementsToCheck)) {
+          const element = document.getElementById(id);
+          if (element) {
+            html += `✅ ${name} found<br>`;
+          } else {
+            html += `❌ ${name} NOT found (id: ${id})<br>`;
+            allFound = false;
+          }
+        }
+
+        if (!allFound) {
+          html = html.replace("success", "error");
+        }
+
+        resultDiv.innerHTML = html + "</div>";
+      }
+
+      // ============ TEST 6: LocalStorage ============
+      function testLocalStorage() {
+        const resultDiv = document.getElementById("storageResult");
+        const token = localStorage.getItem("token");
+        const user = localStorage.getItem("user");
+
+        let html = '<div class="result success">✅ LocalStorage Status<br>';
+        html += `Token: ${token ? "✅ Present" : "❌ Missing"}<br>`;
+        html += `User: ${user ? "✅ Present" : "❌ Missing"}<br>`;
+        html += `Storage Size: ${(new Blob(Object.values(localStorage)).size / 1024).toFixed(2)} KB`;
+        html += "</div>";
+
+        resultDiv.innerHTML = html;
+      }
+
+      // ============ AUTO RUN ALL TESTS ============
+      window.addEventListener("load", () => {
+        console.log("✅ Page loaded, running tests...");
+        setTimeout(() => {
+          testBackendServer();
+          testProductsAPI();
+          testAuth();
+          testDOMElements();
+          testLocalStorage();
+        }, 500);
+      });
+    </script>
+  </body>
+</html>

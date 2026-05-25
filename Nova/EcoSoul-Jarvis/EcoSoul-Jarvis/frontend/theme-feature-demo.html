@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Feature Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Theme background patterns (same as social.html) */
+      body.demo-ocean {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-attachment: fixed;
+      }
+      body.demo-sunset {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background-attachment: fixed;
+      }
+      body.demo-forest {
+        background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+        background-attachment: fixed;
+      }
+      body.demo-candy {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        background-attachment: fixed;
+      }
+      body.demo-midnight {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        background-attachment: fixed;
+      }
+      body.demo-lavender {
+        background: linear-gradient(135deg, #c084fc 0%, #c2e9fb 100%);
+        background-attachment: fixed;
+      }
+      body.demo-tropical {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        background-attachment: fixed;
+      }
+      body.demo-autumn {
+        background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+        background-attachment: fixed;
+      }
+
+      /* Glassmorphism for gradient backgrounds */
+      body.demo-ocean .glass,
+      body.demo-sunset .glass,
+      body.demo-forest .glass,
+      body.demo-candy .glass,
+      body.demo-midnight .glass,
+      body.demo-lavender .glass,
+      body.demo-tropical .glass,
+      body.demo-autumn .glass {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* Theme preview boxes */
+      .theme-preview {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .theme-preview:hover {
+        transform: scale(1.1);
+      }
+      .theme-preview.active {
+        border-color: #10b981;
+        box-shadow:
+          0 0 0 2px #fff,
+          0 0 0 4px #10b981;
+      }
+      .theme-label {
+        font-size: 12px;
+        margin-top: 6px;
+        text-align: center;
+        word-break: break-word;
+      }
+
+      /* Patterns */
+      body.demo-dots {
+        background: #f8fafc;
+        background-image: radial-gradient(circle, #ddd 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+      body.demo-stripes {
+        background: #f8fafc;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(200, 200, 200, 0.1) 10px,
+          rgba(200, 200, 200, 0.1) 20px
+        );
+      }
+      body.demo-grid {
+        background: #f8fafc;
+        background-image:
+          linear-gradient(#ddd 1px, transparent 1px),
+          linear-gradient(90deg, #ddd 1px, transparent 1px);
+        background-size: 25px 25px;
+      }
+      body.demo-light {
+        background: #f8fafc;
+      }
+    </style>
+  </head>
+  <body class="demo-light">
+    <div class="min-h-screen p-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass rounded-lg p-8 mb-8">
+          <h1 class="text-4xl font-bold mb-2">🎨 Theme Feature Demo</h1>
+          <p class="text-gray-600">
+            Click on any theme to see the preview. This is exactly how it works
+            in social.html!
+          </p>
+        </div>
+
+        <div class="glass rounded-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">Available Themes</h2>
+
+          <div class="grid grid-cols-4 sm:grid-cols-6 gap-6 mb-8">
+            <!-- Light -->
+            <div class="text-center">
+              <div
+                class="theme-preview active"
+                style="background: #f8fafc; border: 2px solid #ccc"
+                onclick="changeTheme('light')"
+              ></div>
+              <div class="theme-label font-semibold">Light</div>
+            </div>
+
+            <!-- Ocean -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                "
+                onclick="changeTheme('ocean')"
+              ></div>
+              <div class="theme-label">Ocean</div>
+            </div>
+
+            <!-- Sunset -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                "
+                onclick="changeTheme('sunset')"
+              ></div>
+              <div class="theme-label">Sunset</div>
+            </div>
+
+            <!-- Forest -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+                "
+                onclick="changeTheme('forest')"
+              ></div>
+              <div class="theme-label">Forest</div>
+            </div>
+
+            <!-- Candy -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                "
+                onclick="changeTheme('candy')"
+              ></div>
+              <div class="theme-label">Candy</div>
+            </div>
+
+            <!-- Midnight -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                "
+                onclick="changeTheme('midnight')"
+              ></div>
+              <div class="theme-label">Midnight</div>
+            </div>
+
+            <!-- Lavender -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #c084fc 0%, #c2e9fb 100%);
+                "
+                onclick="changeTheme('lavender')"
+              ></div>
+              <div class="theme-label">Lavender</div>
+            </div>
+
+            <!-- Tropical -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                "
+                onclick="changeTheme('tropical')"
+              ></div>
+              <div class="theme-label">Tropical</div>
+            </div>
+
+            <!-- Autumn -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+                "
+                onclick="changeTheme('autumn')"
+              ></div>
+              <div class="theme-label">Autumn</div>
+            </div>
+
+            <!-- Dots -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: #f8fafc;
+                  background-image: radial-gradient(
+                    circle,
+                    #ddd 1px,
+                    transparent 1px
+                  );
+                  background-size: 20px 20px;
+                "
+                onclick="changeTheme('dots')"
+              ></div>
+              <div class="theme-label">Dots</div>
+            </div>
+
+            <!-- Stripes -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: #f8fafc;
+                  background-image: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(200, 200, 200, 0.1) 10px,
+                    rgba(200, 200, 200, 0.1) 20px
+                  );
+                "
+                onclick="changeTheme('stripes')"
+              ></div>
+              <div class="theme-label">Stripes</div>
+            </div>
+
+            <!-- Grid -->
+            <div class="text-center">
+              <div
+                class="theme-preview"
+                style="
+                  background: #f8fafc;
+                  background-image:
+                    linear-gradient(#ddd 1px, transparent 1px),
+                    linear-gradient(90deg, #ddd 1px, transparent 1px);
+                  background-size: 25px 25px;
+                "
+                onclick="changeTheme('grid')"
+              ></div>
+              <div class="theme-label">Grid</div>
+            </div>
+          </div>
+
+          <div class="border-t pt-6">
+            <p class="text-sm text-gray-600 mb-4">
+              ✨ <strong>Feature Highlights:</strong> Live preview,
+              glassmorphism effect, dark mode compatible, mobile responsive,
+              instant switching
+            </p>
+            <button
+              onclick="resetTheme()"
+              class="bg-green-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-green-700"
+            >
+              Reset to Light
+            </button>
+          </div>
+        </div>
+
+        <div class="glass rounded-lg p-8 mt-8">
+          <h3 class="text-lg font-bold mb-3">📝 How it works:</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <li>Click any theme box to see instant preview</li>
+            <li>Theme applies immediately to the background</li>
+            <li>Cards use glassmorphism for better visibility</li>
+            <li>
+              In social.html, clicking "Save Settings" persists your choice
+            </li>
+            <li>Theme is automatically loaded on next page visit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function changeTheme(theme) {
+        // Remove all theme classes
+        document.body.className = "";
+
+        // Add selected theme class
+        document.body.classList.add("demo-" + theme);
+
+        // Update active state
+        document.querySelectorAll(".theme-preview").forEach((el) => {
+          el.classList.remove("active");
+        });
+        event.target.closest(".theme-preview").classList.add("active");
+      }
+
+      function resetTheme() {
+        changeTheme("light");
+      }
+    </script>
+  </body>
+</html>

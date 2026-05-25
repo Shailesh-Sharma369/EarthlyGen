@@ -1,0 +1,2009 @@
+[
+  {
+    "_id": "695920f0844432bb864c2e77",
+    "name": "Eco Water Bottles",
+    "price": 19,
+    "stock": 100,
+    "image": "img/bottle.jpg",
+    "category": "Bottles",
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-01-03T14:00:16.983Z",
+    "updatedAt": "2026-01-03T14:00:16.983Z"
+  },
+  {
+    "_id": "695920f0844432bb864c2e75",
+    "name": "Reusable Bags",
+    "price": 25,
+    "stock": 100,
+    "image": "img/reusable-bags.jpg",
+    "category": "Bags",
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-01-03T14:00:16.982Z",
+    "updatedAt": "2026-01-03T14:00:16.982Z"
+  },
+  {
+    "_id": "695920f0844432bb864c2e78",
+    "name": "Bamboo Products",
+    "price": 15,
+    "stock": 100,
+    "image": "img/bamboo.jpg",
+    "category": "Health",
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-01-03T14:00:16.983Z",
+    "updatedAt": "2026-01-03T14:00:16.983Z"
+  },
+  {
+    "_id": "695920f0844432bb864c2e76",
+    "name": "Hand Sanitizer",
+    "price": 15,
+    "stock": 100,
+    "image": "img/g5.avif",
+    "category": "Health",
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-01-03T14:00:16.983Z",
+    "updatedAt": "2026-01-03T14:00:16.983Z"
+  },
+  {
+    "_id": "69592269793c37da562ce2f0",
+    "name": "Eco Soaps",
+    "category": "Cosmetics",
+    "price": 15,
+    "oldPrice": 25,
+    "image": "img/soap.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "69592269793c37da562ce2ef",
+    "name": "FaceWash",
+    "category": "Cosmetics",
+    "price": 15,
+    "oldPrice": 30,
+    "image": "img/facewash.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "69592269793c37da562ce2f1",
+    "name": "Natural Extracted Edible Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 25,
+    "oldPrice": 32,
+    "image": "img/oil.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "69592269793c37da562ce2ee",
+    "name": "Eco Brush",
+    "category": "Health",
+    "price": 15,
+    "oldPrice": 20,
+    "image": "img/g2.avif",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a43251f9e9c4f048253c9",
+    "name": "Refillable Glass Water Bottle with Sleeve",
+    "category": "Food & Beverage",
+    "price": 26.99,
+    "oldPrice": 32.5,
+    "image": "img/Refillable Glass Water Bottle with Sleeve.avif",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a43251f9e9c4f048253c7",
+    "name": "Bamboo Toothbrush (4-Pack)",
+    "category": "Personal Care",
+    "price": 19.99,
+    "oldPrice": 24.99,
+    "image": "img/p6.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a43251f9e9c4f048253ca",
+    "name": "Solid Shampoo and Conditioner Bar Set",
+    "category": "Beauty",
+    "price": 28.99,
+    "oldPrice": 28.99,
+    "image": "img/Solid Shampoo and Conditioner Bar Set.avif",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a43251f9e9c4f048253c8",
+    "name": "Organic Cotton Reusable Shopping Bags (3-Pack)",
+    "category": "Home & Kitchen",
+    "price": 24.99,
+    "oldPrice": 29.99,
+    "image": "img/cottonbag.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d6",
+    "name": "Eco Water Bottle",
+    "category": "Lifestyle",
+    "price": 35,
+    "oldPrice": 50,
+    "image": "img/WaterBottle.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253df",
+    "name": "Eco Laundry Detergent",
+    "category": "Home Care",
+    "price": 40,
+    "oldPrice": 55,
+    "image": "img/Detergent.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d1",
+    "name": "Eco Bath Soap",
+    "category": "Cosmetics",
+    "price": 15,
+    "oldPrice": 25,
+    "image": "img/BathSoap.avif",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253de",
+    "name": "Herbal Hand Wash",
+    "category": "Personal Care",
+    "price": 18,
+    "oldPrice": 25,
+    "image": "img/HandWash.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253e2",
+    "name": "Bamboo Hair Brush",
+    "category": "Personal Care",
+    "price": 16,
+    "oldPrice": 24,
+    "image": "img/HairBrush.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253cd",
+    "name": "Eco Brush",
+    "category": "Health",
+    "price": 15,
+    "oldPrice": 20,
+    "image": "img/brush.avif",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253dd",
+    "name": "Natural Mosquito Repellent",
+    "category": "Health",
+    "price": 22,
+    "oldPrice": 32,
+    "image": "img/MosquitoRepellent.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253cf",
+    "name": "Organic Face Wash",
+    "category": "Cosmetics",
+    "price": 22,
+    "oldPrice": 30,
+    "image": "img/facewash.avif",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253da",
+    "name": "Reusable Bamboo Straws",
+    "category": "Home & Kitchen",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/BambooStraws.jpg",
+    "stock": 180,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253db",
+    "name": "Eco Floor Cleaner",
+    "category": "Home Care",
+    "price": 26,
+    "oldPrice": 35,
+    "image": "img/FloorCleaner.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d3",
+    "name": "Cold Pressed Mustard Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/MustardOil.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d7",
+    "name": "Bamboo Toothbrush",
+    "category": "Personal Care",
+    "price": 10,
+    "oldPrice": 15,
+    "image": "img/brush1.jpg",
+    "stock": 300,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253dc",
+    "name": "Plant Based Dish Liquid",
+    "category": "Home Care",
+    "price": 20,
+    "oldPrice": 28,
+    "image": "img/DishLiquid.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253e3",
+    "name": "Natural Lip Balm",
+    "category": "Cosmetics",
+    "price": 8,
+    "oldPrice": 12,
+    "image": "img/LipBalm.jpg",
+    "stock": 180,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253ce",
+    "name": "Herbal Tooth Powder",
+    "category": "Health",
+    "price": 18,
+    "oldPrice": 25,
+    "image": "img/toothpowder.avif",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d2",
+    "name": "Organic Coconut Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/CoconutOil.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d5",
+    "name": "Reusable Cotton Shopping Bag",
+    "category": "Lifestyle",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/CottonBag1.jpg",
+    "stock": 200,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253e0",
+    "name": "Organic Cotton Face Mask",
+    "category": "Lifestyle",
+    "price": 12,
+    "oldPrice": 18,
+    "image": "img/FaceMask.jpg",
+    "stock": 220,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d0",
+    "name": "Aloe Vera Face Gel",
+    "category": "Cosmetics",
+    "price": 25,
+    "oldPrice": 35,
+    "image": "img/Face Gel.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d8",
+    "name": "Natural Shampoo Bar",
+    "category": "Personal Care",
+    "price": 18,
+    "oldPrice": 25,
+    "image": "img/ShampooBar.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d9",
+    "name": "Eco Dishwashing Bar",
+    "category": "Home & Kitchen",
+    "price": 12,
+    "oldPrice": 18,
+    "image": "img/DishwashingBar.jpg",
+    "stock": 160,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253e1",
+    "name": "Eco Yoga Mat",
+    "category": "Fitness",
+    "price": 60,
+    "oldPrice": 85,
+    "image": "img/YogaMat.jpg",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "_id": "695a59e31f9e9c4f048253d4",
+    "name": "Natural Almond Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 45,
+    "oldPrice": 60,
+    "image": "img/AlmondOil.jpg",
+    "stock": 50,
+    "isActive": true
+  },
+  {
+    "_id": "695a5b431f9e9c4f048253e5",
+    "name": "Eco Pen",
+    "category": "Lifestyle",
+    "price": 25,
+    "oldPrice": 35,
+    "image": "img/Ecopen.avif",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f4",
+    "name": "Eco Garbage Bags",
+    "category": "Home Care",
+    "price": 20,
+    "oldPrice": 28,
+    "image": "img/GBags.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f7",
+    "name": "Eco Pen Stand",
+    "category": "Office",
+    "price": 12,
+    "oldPrice": 18,
+    "image": "img/PenStand.jpg",
+    "stock": 160,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253fd",
+    "name": "Eco Travel Bottle",
+    "category": "Lifestyle",
+    "price": 18,
+    "oldPrice": 26,
+    "image": "img/TBottle.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253fc",
+    "name": "Reusable Steel Lunch Box",
+    "category": "Lifestyle",
+    "price": 45,
+    "oldPrice": 65,
+    "image": "img/LBox.jpg",
+    "stock": 50,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ee",
+    "name": "Eco Hand Sanitizer",
+    "category": "Personal Care",
+    "price": 12,
+    "oldPrice": 18,
+    "image": "img/HandW.jpg",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f0",
+    "name": "Organic Cotton Towels",
+    "category": "Lifestyle",
+    "price": 40,
+    "oldPrice": 55,
+    "image": "img/Towels.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253fa",
+    "name": "Herbal Night Cream",
+    "category": "Cosmetics",
+    "price": 38,
+    "oldPrice": 55,
+    "image": "img/ECream.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f5",
+    "name": "Bamboo Desk Organizer",
+    "category": "Office",
+    "price": 34,
+    "oldPrice": 48,
+    "image": "img/Desk.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253e7",
+    "name": "Eco Kitchen Sponge",
+    "category": "Home & Kitchen",
+    "price": 9,
+    "oldPrice": 14,
+    "image": "img/Sponge.jpg",
+    "stock": 210,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ef",
+    "name": "Reusable Cloth Napkins",
+    "category": "Lifestyle",
+    "price": 22,
+    "oldPrice": 30,
+    "image": "img/Napkins.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f9",
+    "name": "Natural Face Scrub",
+    "category": "Cosmetics",
+    "price": 20,
+    "oldPrice": 28,
+    "image": "img/FaceScrub.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ec",
+    "name": "Natural Body Lotion",
+    "category": "Personal Care",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/Lotion.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f2",
+    "name": "Natural Room Freshener",
+    "category": "Home Care",
+    "price": 18,
+    "oldPrice": 26,
+    "image": "img/Room.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f3",
+    "name": "Plant Based Toilet Cleaner",
+    "category": "Home Care",
+    "price": 22,
+    "oldPrice": 32,
+    "image": "img/Cleaner.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253eb",
+    "name": "Herbal Immunity Kadha",
+    "category": "Health",
+    "price": 35,
+    "oldPrice": 50,
+    "image": "img/Kadha.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253fb",
+    "name": "Eco Baby Soap",
+    "category": "Cosmetics",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/BabySoap.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ff",
+    "name": "Eco Plant Pot",
+    "category": "Gardening",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/PlantPot.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253e9",
+    "name": "Reusable Glass Container",
+    "category": "Home & Kitchen",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/Container.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ea",
+    "name": "Organic Green Tea",
+    "category": "Health",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/Tea.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253fe",
+    "name": "Natural Essential Oil Set",
+    "category": "Health",
+    "price": 55,
+    "oldPrice": 75,
+    "image": "img/OilSet.jpg",
+    "stock": 40,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f8",
+    "name": "Organic Herbal Tea",
+    "category": "Health",
+    "price": 25,
+    "oldPrice": 35,
+    "image": "img/HerbalT.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253ed",
+    "name": "Organic Hair Conditioner",
+    "category": "Personal Care",
+    "price": 24,
+    "oldPrice": 34,
+    "image": "img/HConditioner.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253e8",
+    "name": "Bamboo Cutting Board",
+    "category": "Home & Kitchen",
+    "price": 32,
+    "oldPrice": 45,
+    "image": "img/Board.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f1",
+    "name": "Eco Storage Basket",
+    "category": "Lifestyle",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/Basket.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a662f1f9e9c4f048253f6",
+    "name": "Recycled Paper Notebook",
+    "category": "Office",
+    "price": 14,
+    "oldPrice": 20,
+    "image": "img/Notebook.jpg",
+    "stock": 180,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825405",
+    "name": "Herbal Under Eye Cream",
+    "category": "Cosmetics",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/ECream.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825410",
+    "name": "Bamboo Keyboard Wrist Rest",
+    "category": "Office",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/WristRest.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825403",
+    "name": "Eco Immunity Capsules",
+    "category": "Health",
+    "price": 50,
+    "oldPrice": 72,
+    "image": "img/Capsules.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825407",
+    "name": "Reusable Grocery Produce Bags",
+    "category": "Lifestyle",
+    "price": 16,
+    "oldPrice": 24,
+    "image": "img/PBags.jpg",
+    "stock": 160,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825401",
+    "name": "Organic Herbal Tea Blend",
+    "category": "Health",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/TBlend.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825406",
+    "name": "Eco Baby Shampoo",
+    "category": "Cosmetics",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/Shampoo.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825409",
+    "name": "Organic Cotton Yoga Strap",
+    "category": "Fitness",
+    "price": 22,
+    "oldPrice": 32,
+    "image": "img/YStrap.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540e",
+    "name": "Natural Pet Shampoo",
+    "category": "Pet Care",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/PShampoo.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825404",
+    "name": "Natural Charcoal Face Mask",
+    "category": "Cosmetics",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/Charcoal.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540a",
+    "name": "Eco Plant Fertilizer",
+    "category": "Gardening",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/Fertilizer.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540d",
+    "name": "Eco Pet Feeding Bowl",
+    "category": "Pet Care",
+    "price": 22,
+    "oldPrice": 32,
+    "image": "img/Bowl.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825402",
+    "name": "Natural Energy Booster Powder",
+    "category": "Health",
+    "price": 45,
+    "oldPrice": 65,
+    "image": "img/BPowder.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540c",
+    "name": "Natural Neem Pesticide Spray",
+    "category": "Gardening",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/PSpray.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540f",
+    "name": "Eco Recycled Laptop Sleeve",
+    "category": "Office",
+    "price": 40,
+    "oldPrice": 58,
+    "image": "img/Sleeve.jpg",
+    "stock": 65,
+    "isActive": true
+  },{
+    "_id": "695a66711f9e9c4f04825411",
+    "name": "Eco Desk Cable Organizer",
+    "category": "Office",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/Cable.jpg",
+    "stock": 170,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f0482540b",
+    "name": "Organic Vermicompost",
+    "category": "Gardening",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/Vermicompost.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a66711f9e9c4f04825408",
+    "name": "Eco Travel Cutlery Pouch",
+    "category": "Lifestyle",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/Pouch.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825424",
+    "name": "Eco Jump Rope",
+    "category": "Fitness",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/Rope.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825418",
+    "name": "Eco Makeup Brush Set",
+    "category": "Cosmetics",
+    "price": 38,
+    "oldPrice": 55,
+    "image": "img/Set.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825425",
+    "name": "Natural Cork Balance Board",
+    "category": "Fitness",
+    "price": 65,
+    "oldPrice": 95,
+    "image": "img/Board1.jpg",
+    "stock": 35,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825427",
+    "name": "Eco Desktop Calendar",
+    "category": "Office",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/Calendar.jpg",
+    "stock": 160,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825421",
+    "name": "Reusable Travel Water Filter Bottle",
+    "category": "Lifestyle",
+    "price": 55,
+    "oldPrice": 80,
+    "image": "img/RBottle.jpg",
+    "stock": 40,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825426",
+    "name": "Recycled Cardboard File Organizer",
+    "category": "Office",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/file.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825413",
+    "name": "Bamboo Soap Dish",
+    "category": "Personal Care",
+    "price": 11,
+    "oldPrice": 18,
+    "image": "img/Dish.jpg",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825419",
+    "name": "Reusable Bamboo Paper Towels",
+    "category": "Home & Kitchen",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/Towels1.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541c",
+    "name": "Natural Wood Furniture Polish",
+    "category": "Home Care",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/Polish.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825414",
+    "name": "Herbal Toothpaste Tablets",
+    "category": "Personal Care",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/Tablets.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825415",
+    "name": "Organic Beard Grooming Oil",
+    "category": "Personal Care",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/Oil1.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825416",
+    "name": "Rose Clay Face Mask",
+    "category": "Cosmetics",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/Mask.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541e",
+    "name": "Plant Based Glass Cleaner",
+    "category": "Home Care",
+    "price": 18,
+    "oldPrice": 26,
+    "image": "img/GCleaner.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541f",
+    "name": "Organic Cotton Apron",
+    "category": "Lifestyle",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/Apron.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541d",
+    "name": "Eco Carpet Cleaning Powder",
+    "category": "Home Care",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/Powder.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825420",
+    "name": "Eco Picnic Cutlery Set",
+    "category": "Lifestyle",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/PSet.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825422",
+    "name": "Organic Flaxseed Hair Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/Oil2.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825417",
+    "name": "Vitamin C Herbal Serum",
+    "category": "Cosmetics",
+    "price": 45,
+    "oldPrice": 65,
+    "image": "img/C.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541b",
+    "name": "Glass Tea Kettle",
+    "category": "Home & Kitchen",
+    "price": 48,
+    "oldPrice": 70,
+    "image": "img/Kettle.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f04825423",
+    "name": "Cold Pressed Groundnut Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 42,
+    "oldPrice": 60,
+    "image": "img/Oil3.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66e31f9e9c4f0482541a",
+    "name": "Eco Baking Mat",
+    "category": "Home & Kitchen",
+    "price": 26,
+    "oldPrice": 40,
+    "image": "img/Mat.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542c",
+    "name": "Herbal Anti Acne Gel",
+    "category": "Cosmetics",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/A1.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482543b",
+    "name": "Eco Ergonomic Mouse Pad",
+    "category": "Office",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/b6.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542a",
+    "name": "Herbal Digestive Powder",
+    "category": "Health",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/Powder1.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825434",
+    "name": "Eco Foldable Shopping Crate",
+    "category": "Lifestyle",
+    "price": 36,
+    "oldPrice": 52,
+    "image": "img/A9.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542b",
+    "name": "Natural Ashwagandha Capsules",
+    "category": "Health",
+    "price": 48,
+    "oldPrice": 70,
+    "image": "img/N1.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542d",
+    "name": "Natural Sunscreen Lotion",
+    "category": "Cosmetics",
+    "price": 42,
+    "oldPrice": 60,
+    "image": "img/A2.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825436",
+    "name": "Eco Seed Starter Kit",
+    "category": "Gardening",
+    "price": 25,
+    "oldPrice": 38,
+    "image": "img/b1.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825430",
+    "name": "Bamboo Spice Rack",
+    "category": "Home & Kitchen",
+    "price": 46,
+    "oldPrice": 68,
+    "image": "img/A5.jpg",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825433",
+    "name": "Organic Cotton Bedside Organizer",
+    "category": "Lifestyle",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/A8.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825435",
+    "name": "Natural Lavender Essential Oil",
+    "category": "Health",
+    "price": 40,
+    "oldPrice": 58,
+    "image": "img/A10.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825429",
+    "name": "Organic Turmeric Latte Mix",
+    "category": "Health",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/Mix.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825432",
+    "name": "Natural Sink Cleaning Gel",
+    "category": "Home Care",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/A7.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825437",
+    "name": "Organic Potting Soil Mix",
+    "category": "Gardening",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/b2.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542e",
+    "name": "Eco Baby Moisturizing Cream",
+    "category": "Cosmetics",
+    "price": 28,
+    "oldPrice": 40,
+    "image": "img/A3.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482542f",
+    "name": "Reusable Produce Storage Box",
+    "category": "Home & Kitchen",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/A4.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825431",
+    "name": "Eco Multi Surface Cleaner",
+    "category": "Home Care",
+    "price": 22,
+    "oldPrice": 32,
+    "image": "img/A6.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f0482543a",
+    "name": "Recycled Plastic Desk Tray",
+    "category": "Office",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/b5.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825439",
+    "name": "Natural Pet Dental Chews",
+    "category": "Pet Care",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/b4.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a66f71f9e9c4f04825438",
+    "name": "Eco Pet Waste Bags",
+    "category": "Pet Care",
+    "price": 16,
+    "oldPrice": 24,
+    "image": "img/b3.jpg",
+    "stock": 180,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825444",
+    "name": "Eco Stainless Steel Ice Cubes",
+    "category": "Home & Kitchen",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/c1.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825449",
+    "name": "Organic Cotton Table Runner",
+    "category": "Lifestyle",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/c6.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825443",
+    "name": "Reusable Bamboo Lunch Plate",
+    "category": "Home & Kitchen",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/b0.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544b",
+    "name": "Reusable Bamboo Coffee Cup",
+    "category": "Lifestyle",
+    "price": 20,
+    "oldPrice": 32,
+    "image": "img/c8.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544e",
+    "name": "Eco Foam Roller",
+    "category": "Fitness",
+    "price": 42,
+    "oldPrice": 62,
+    "image": "img/c11.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482543e",
+    "name": "Herbal Mouth Freshener Seeds",
+    "category": "Personal Care",
+    "price": 10,
+    "oldPrice": 16,
+    "image": "img/b8.jpg",
+    "stock": 160,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482543f",
+    "name": "Natural Foot Care Balm",
+    "category": "Personal Care",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/b9.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825446",
+    "name": "Plant Based Oven Cleaner",
+    "category": "Home Care",
+    "price": 30,
+    "oldPrice": 44,
+    "image": "img/c3.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825447",
+    "name": "Natural Toilet Cleaning Blocks",
+    "category": "Home Care",
+    "price": 18,
+    "oldPrice": 26,
+    "image": "img/c4.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825442",
+    "name": "Eco Herbal Lip Scrub",
+    "category": "Cosmetics",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/b12.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825441",
+    "name": "Natural Rose Water Toner",
+    "category": "Cosmetics",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/b11.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825445",
+    "name": "Organic Coconut Shell Bowl",
+    "category": "Home & Kitchen",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/c2.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825448",
+    "name": "Eco Wood Surface Cleaner",
+    "category": "Home Care",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/c5.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544c",
+    "name": "Organic Sesame Hair Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 36,
+    "oldPrice": 54,
+    "image": "img/c9.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544f",
+    "name": "Natural Cork Yoga Wheel",
+    "category": "Fitness",
+    "price": 68,
+    "oldPrice": 98,
+    "image": "img/c12.jpg",
+    "stock": 35,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544a",
+    "name": "Eco Insulated Lunch Bag",
+    "category": "Lifestyle",
+    "price": 38,
+    "oldPrice": 56,
+    "image": "img/c7.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482544d",
+    "name": "Cold Pressed Rice Bran Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 40,
+    "oldPrice": 60,
+    "image": "img/c10.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825450",
+    "name": "Recycled Paper Wall Calendar",
+    "category": "Office",
+    "price": 16,
+    "oldPrice": 24,
+    "image": "img/c13.jpg",
+    "stock": 180,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825451",
+    "name": "Eco Bamboo Desk Shelf",
+    "category": "Office",
+    "price": 44,
+    "oldPrice": 64,
+    "image": "img/c14.jpg",
+    "stock": 50,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f0482543d",
+    "name": "Bamboo Toothbrush Travel Case",
+    "category": "Personal Care",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/b7.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67511f9e9c4f04825440",
+    "name": "Green Tea Clay Face Mask",
+    "category": "Cosmetics",
+    "price": 26,
+    "oldPrice": 40,
+    "image": "img/b10.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545b",
+    "name": "Eco Dish Rinse Aid",
+    "category": "Home Care",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/c23.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825464",
+    "name": "Recycled Cork Notice Board",
+    "category": "Office",
+    "price": 36,
+    "oldPrice": 54,
+    "image": "img/d7.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825457",
+    "name": "Natural Underarm Brightening Cream",
+    "category": "Cosmetics",
+    "price": 38,
+    "oldPrice": 56,
+    "image": "img/c19.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825460",
+    "name": "Eco Organic Seed Balls",
+    "category": "Gardening",
+    "price": 14,
+    "oldPrice": 22,
+    "image": "img/d3.jpg",
+    "stock": 200,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545f",
+    "name": "Natural Peppermint Essential Oil",
+    "category": "Health",
+    "price": 42,
+    "oldPrice": 62,
+    "image": "img/d2.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825463",
+    "name": "Natural Pet Paw Balm",
+    "category": "Pet Care",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/d6.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825455",
+    "name": "Natural Calcium Supplement",
+    "category": "Health",
+    "price": 48,
+    "oldPrice": 72,
+    "image": "img/c17.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825459",
+    "name": "Reusable Silicone Baking Cups",
+    "category": "Home & Kitchen",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/c21.jpg",
+    "stock": 130,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825456",
+    "name": "Eco Herbal Face Cleanser",
+    "category": "Cosmetics",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/c18.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545a",
+    "name": "Bamboo Rolling Pin",
+    "category": "Home & Kitchen",
+    "price": 30,
+    "oldPrice": 46,
+    "image": "img/c22.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545c",
+    "name": "Natural Drain Cleaning Powder",
+    "category": "Home Care",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/c24.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+   {
+    "_id": "695a67671f9e9c4f04825465",
+    "name": "Eco Wooden Laptop Stand",
+    "category": "Office",
+    "price": 58,
+    "oldPrice": 84,
+    "image": "img/d8.jpg",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825453",
+    "name": "Organic Moringa Powder",
+    "category": "Health",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/c15.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545e",
+    "name": "Eco Foldable Yoga Mat Bag",
+    "category": "Lifestyle",
+    "price": 34,
+    "oldPrice": 52,
+    "image": "img/d1.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825461",
+    "name": "Natural Cocopeat Soil Block",
+    "category": "Gardening",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/d4.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f0482545d",
+    "name": "Organic Cotton Travel Pouch",
+    "category": "Lifestyle",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/c25.jpg",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825462",
+    "name": "Eco Pet Grooming Brush",
+    "category": "Pet Care",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/d5.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825454",
+    "name": "Herbal Detox Tea",
+    "category": "Health",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/c16.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a67671f9e9c4f04825458",
+    "name": "Eco Herbal Hair Mask",
+    "category": "Cosmetics",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/c20.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825472",
+    "name": "Eco Garbage Compost Starter",
+    "category": "Home Care",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/d20.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825467",
+    "name": "Organic Chia Seed Mix",
+    "category": "Health",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/d9.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825475",
+    "name": "Reusable Bamboo Storage Crate",
+    "category": "Lifestyle",
+    "price": 42,
+    "oldPrice": 62,
+    "image": "img/d23.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825468",
+    "name": "Herbal Joint Pain Relief Oil",
+    "category": "Health",
+    "price": 40,
+    "oldPrice": 60,
+    "image": "img/d10.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825478",
+    "name": "Eco Pilates Resistance Ring",
+    "category": "Fitness",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/e1.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825469",
+    "name": "Natural Spirulina Tablets",
+    "category": "Health",
+    "price": 46,
+    "oldPrice": 68,
+    "image": "img/d11.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546b",
+    "name": "Natural Herbal Kajal",
+    "category": "Cosmetics",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/d13.jpg",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546e",
+    "name": "Bamboo Bread Storage Box",
+    "category": "Home & Kitchen",
+    "price": 46,
+    "oldPrice": 68,
+    "image": "img/d16.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546c",
+    "name": "Eco Baby Massage Oil",
+    "category": "Cosmetics",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/d14.jpg",
+    "stock": 95,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546f",
+    "name": "Eco Stainless Steel Lunch Jar",
+    "category": "Home & Kitchen",
+    "price": 42,
+    "oldPrice": 62,
+    "image": "img/d17.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825474",
+    "name": "Eco Travel Neck Pillow",
+    "category": "Lifestyle",
+    "price": 38,
+    "oldPrice": 56,
+    "image": "img/d22.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825477",
+    "name": "Cold Pressed Sunflower Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 36,
+    "oldPrice": 54,
+    "image": "img/d25.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825479",
+    "name": "Natural Yoga Knee Support Pad",
+    "category": "Fitness",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/e2.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546d",
+    "name": "Reusable Glass Fermentation Jar",
+    "category": "Home & Kitchen",
+    "price": 34,
+    "oldPrice": 50,
+    "image": "img/d15.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482547a",
+    "name": "Recycled Paper Office Tray",
+    "category": "Office",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/e3.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482546a",
+    "name": "Eco Mineral Face Powder",
+    "category": "Cosmetics",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/d12.jpg",
+    "stock": 110,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825473",
+    "name": "Organic Cotton Laundry Bag",
+    "category": "Lifestyle",
+    "price": 20,
+    "oldPrice": 30,
+    "image": "img/d21.jpg",
+    "stock": 150,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825470",
+    "name": "Plant Based Fabric Stain Remover",
+    "category": "Home Care",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/d18.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f0482547b",
+    "name": "Eco Bamboo Drawer Organizer",
+    "category": "Office",
+    "price": 40,
+    "oldPrice": 60,
+    "image": "img/e4.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825471",
+    "name": "Natural Tile Floor Cleaner",
+    "category": "Home Care",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/d19.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a67be1f9e9c4f04825476",
+    "name": "Organic Argan Hair Oil",
+    "category": "Cooking / Hair Oils",
+    "price": 48,
+    "oldPrice": 70,
+    "image": "img/d24.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825482",
+    "name": "Eco Herbal Hair Growth Serum",
+    "category": "Cosmetics",
+    "price": 46,
+    "oldPrice": 68,
+    "image": "img/e10.jpg",
+    "stock": 65,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548a",
+    "name": "Eco Organic Microgreens Kit",
+    "category": "Gardening",
+    "price": 32,
+    "oldPrice": 48,
+    "image": "img/e18.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825488",
+    "name": "Eco Foldable Travel Organizer",
+    "category": "Lifestyle",
+    "price": 36,
+    "oldPrice": 54,
+    "image": "img/e16.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548c",
+    "name": "Eco Pet Training Treats",
+    "category": "Pet Care",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/e20.jpg",
+    "stock": 140,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548f",
+    "name": "Eco Adjustable Laptop Riser",
+    "category": "Office",
+    "price": 62,
+    "oldPrice": 92,
+    "image": "img/e23.jpg",
+    "stock": 40,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825483",
+    "name": "Reusable Silicone Food Storage Bags",
+    "category": "Home & Kitchen",
+    "price": 30,
+    "oldPrice": 45,
+    "image": "img/e11.jpg",
+    "stock": 90,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548e",
+    "name": "Recycled Wood Desk Organizer",
+    "category": "Office",
+    "price": 38,
+    "oldPrice": 56,
+    "image": "img/e22.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825481",
+    "name": "Natural Lip Tint Balm",
+    "category": "Cosmetics",
+    "price": 22,
+    "oldPrice": 34,
+    "image": "img/e9.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548d",
+    "name": "Natural Pet Fur Conditioner",
+    "category": "Pet Care",
+    "price": 30,
+    "oldPrice": 46,
+    "image": "img/e21.jpg",
+    "stock": 80,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825480",
+    "name": "Eco Herbal BB Cream",
+    "category": "Cosmetics",
+    "price": 36,
+    "oldPrice": 54,
+    "image": "img/e8.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482548b",
+    "name": "Natural Liquid Plant Fertilizer",
+    "category": "Gardening",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/e19.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482547d",
+    "name": "Organic Matcha Green Tea",
+    "category": "Health",
+    "price": 42,
+    "oldPrice": 62,
+    "image": "img/e5.jpg",
+    "stock": 75,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825484",
+    "name": "Bamboo Kitchen Drawer Tray",
+    "category": "Home & Kitchen",
+    "price": 44,
+    "oldPrice": 66,
+    "image": "img/e12.jpg",
+    "stock": 55,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482547f",
+    "name": "Natural Omega 3 Seed Oil",
+    "category": "Health",
+    "price": 55,
+    "oldPrice": 80,
+    "image": "img/e7.jpg",
+    "stock": 50,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825489",
+    "name": "Natural Eucalyptus Essential Oil",
+    "category": "Health",
+    "price": 44,
+    "oldPrice": 66,
+    "image": "img/e17.jpg",
+    "stock": 70,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825485",
+    "name": "Eco Natural Dishwashing Powder",
+    "category": "Home Care",
+    "price": 26,
+    "oldPrice": 38,
+    "image": "img/e13.jpg",
+    "stock": 100,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825487",
+    "name": "Organic Cotton Yoga Bolster",
+    "category": "Lifestyle",
+    "price": 52,
+    "oldPrice": 78,
+    "image": "img/e15.jpg",
+    "stock": 45,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f0482547e",
+    "name": "Herbal Sleep Support Capsules",
+    "category": "Health",
+    "price": 48,
+    "oldPrice": 72,
+    "image": "img/e6.jpg",
+    "stock": 60,
+    "isActive": true
+  },
+  {
+    "_id": "695a67d51f9e9c4f04825486",
+    "name": "Plant Based Bathroom Cleaner",
+    "category": "Home Care",
+    "price": 28,
+    "oldPrice": 42,
+    "image": "img/e14.jpg",
+    "stock": 85,
+    "isActive": true
+  },
+  {
+    "_id": "695a68711f9e9c4f04825491",
+    "name": "Natural Bamboo Charcoal Air Purifier Bags",
+    "category": "Home Care",
+    "price": 24,
+    "oldPrice": 36,
+    "image": "img/e24.jpg",
+    "stock": 120,
+    "isActive": true
+  },
+  {
+    "_id": "695a68711f9e9c4f04825492",
+    "name": "Organic Linen Reusable Bread Storage Bag",
+    "category": "Home & Kitchen",
+    "price": 18,
+    "oldPrice": 28,
+    "image": "img/e25.jpg",
+    "stock": 95,
+    "isActive": true
+  }
+]

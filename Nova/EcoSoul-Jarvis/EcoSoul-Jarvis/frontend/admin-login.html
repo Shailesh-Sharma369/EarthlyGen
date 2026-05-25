@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - EcoSoul</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .login-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 450px;
+        padding: 40px;
+        animation: slideUp 0.5s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo h1 {
+        color: #667eea;
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .logo p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: all 0.3s;
+        background: #f8f8f8;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 10px;
+      }
+
+      .login-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .login-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .error-message {
+        background: #fee;
+        color: #c33;
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: none;
+        font-size: 14px;
+        border-left: 4px solid #c33;
+      }
+
+      .success-message {
+        background: #efe;
+        color: #3c3;
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: none;
+        font-size: 14px;
+        border-left: 4px solid #3c3;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #667eea;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .divider {
+        text-align: center;
+        margin: 20px 0;
+        color: #999;
+        font-size: 14px;
+      }
+
+      .demo-info {
+        background: #e8f4f8;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #555;
+        border-left: 4px solid #667eea;
+      }
+
+      .demo-info h4 {
+        color: #667eea;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .demo-info p {
+        margin: 5px 0;
+        color: #666;
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .back-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .back-link a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+      }
+
+      .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      .alert.show {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .alert-error {
+        background: #fee;
+        color: #c33;
+        border-left: 4px solid #c33;
+      }
+
+      .alert-success {
+        background: #efe;
+        color: #3c3;
+        border-left: 4px solid #3c3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="logo">
+        <h1>👨‍💼 Admin Panel</h1>
+        <p>EcoSoul Admin Login</p>
+      </div>
+
+      <div id="errorAlert" class="alert alert-error"></div>
+      <div id="successAlert" class="alert alert-success"></div>
+
+      <div class="loading" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p style="margin-top: 10px; color: #667eea">Logging in...</p>
+      </div>
+
+      <form id="loginForm" style="display: block">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter admin email"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+          Sign In as Admin
+        </button>
+      </form>
+
+      <div class="demo-info">
+        <h4>📧 Test Admin Account:</h4>
+        <p><strong>Email:</strong> SARTHAKDESHMUKH792@GMAIL.COM</p>
+        <p><strong>Password:</strong> Your original password</p>
+        <p style="margin-top: 10px; font-size: 12px; color: #888">
+          💡 Email is case-insensitive
+        </p>
+      </div>
+
+      <div class="back-link">
+        <a href="login.html">← Back to User Login</a>
+      </div>
+    </div>
+
+    <script>
+      const API = "http://localhost:5002/api";
+
+      const form = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const loginBtn = document.getElementById("loginBtn");
+      const errorAlert = document.getElementById("errorAlert");
+      const successAlert = document.getElementById("successAlert");
+      const loadingSpinner = document.getElementById("loadingSpinner");
+
+      // Show alert message
+      function showAlert(message, type = "error") {
+        const alert = type === "error" ? errorAlert : successAlert;
+        alert.textContent = message;
+        alert.classList.add("show");
+
+        setTimeout(() => {
+          alert.classList.remove("show");
+        }, 5000);
+      }
+
+      // Handle form submission
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+          showAlert("❌ Please enter both email and password", "error");
+          return;
+        }
+
+        // Show loading state
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Signing in...";
+        loadingSpinner.style.display = "block";
+
+        try {
+          const response = await fetch(`${API}/auth/signin`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.message || "Login failed. Please try again.");
+          }
+
+          if (!data.token) {
+            throw new Error("No token received from server");
+          }
+
+          // Decode token to check role
+          const base64Url = data.token.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          const jsonPayload = decodeURIComponent(
+            atob(base64)
+              .split("")
+              .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+              .join(""),
+          );
+          const decoded = JSON.parse(jsonPayload);
+
+          if (decoded.role !== "ADMIN") {
+            throw new Error(
+              "❌ Access Denied! This account is not an admin account.",
+            );
+          }
+
+          // Save token and user info - ADMIN KEYS (alag se)
+          localStorage.setItem("adminToken", data.token);
+          localStorage.setItem("adminLoggedIn", "true");
+          localStorage.setItem("adminName", data.user.fullName);
+          localStorage.setItem("adminEmail", data.user.email);
+          localStorage.setItem("adminId", data.user.id);
+          localStorage.setItem("userType", "admin");
+
+          showAlert(`✅ Welcome back, ${data.user.fullName}!`, "success");
+
+          // Redirect to admin panel
+          setTimeout(() => {
+            window.location.href = "admin.html";
+          }, 1000);
+        } catch (error) {
+          console.error("Login error:", error);
+          showAlert(
+            error.message || "❌ Login failed. Please try again.",
+            "error",
+          );
+        } finally {
+          loginBtn.disabled = false;
+          loginBtn.textContent = "Sign In as Admin";
+          loadingSpinner.style.display = "none";
+        }
+      });
+
+      // Auto-focus email field on load
+      window.addEventListener("load", () => {
+        emailInput.focus();
+      });
+    </script>
+
+    <!-- Ruhi AI Assistant -->
+    <script src="config.js"></script>
+    <script src="js/profilePicSync.js"></script>
+    <script src="ruhi.js" defer></script>
+  </body>
+</html>

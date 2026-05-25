@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="img/OG.jpg" />
+    <title>Order Confirmed</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="confirmation">
+    <header>
+      <div class="top container">
+        <div class="logo">
+          <a href="index.html" rel="Homepage"> SocialCart </a>
+        </div>
+        <div class="search">
+          <input placeholder="Search products" />
+          <button>Search</button>
+        </div>
+        <a class="cart-link" href="cart.html"
+          >🛒 Cart <span class="badge" id="cartCount">0</span></a
+        >
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="card" style="background: #fff">
+        <h1>🎉 Thank you for your order!</h1>
+        <p class="muted" style="margin-top: 6px">
+          You'll receive a confirmation SMS shortly.
+        </p>
+        <button
+          class="btn btn-alt"
+          style="width: auto; margin-top: 12px"
+          onclick="window.location.href='index.html'"
+        >
+          Back to Home
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

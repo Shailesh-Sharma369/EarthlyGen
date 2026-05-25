@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account | GreenWorld</title>
+    <link rel="stylesheet" href="style1.css" />
+    <!-- Ionicons for Apple logo -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <script type="module" src="../backend/server.js" defer></script> -->
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f0f4f3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .signup-section {
+        display: flex;
+        max-width: 1000px;
+        width: 100%;
+        background: rgba(27, 67, 50, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .signup-section:hover {
+        transform: scale(1.01);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      }
+      .signup-content {
+        flex: 1;
+        padding: 40px;
+        color: #fff;
+      }
+      .signup-content h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+      .signup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .signup-form input,
+      .signup-form select {
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+      .signup-form button {
+        background: #4e2c0a;
+        color: #fff;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .signup-form button:hover {
+        background: #3b2007;
+      }
+      .divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+        font-weight: bold;
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .divider::before {
+        left: 0;
+      }
+      .divider::after {
+        right: 0;
+      }
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .google-btn {
+        background: #fff;
+        color: #333;
+      }
+      .facebook-btn {
+        background: #fff;
+        color: #333;
+      }
+      .apple-btn {
+        background: #000;
+        color: #fff;
+      }
+      .social-btn img,
+      .social-btn ion-icon {
+        width: 20px;
+        height: 20px;
+      }
+      .switch-link {
+        margin-top: 12px;
+        display: block;
+        color: #007bff;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .signup-image {
+        flex: 1;
+        border-radius: 0 12px 12px 0;
+        position: relative;
+        overflow: hidden;
+        min-height: 400px;
+      }
+      .signup-image .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0 12px 12px 0;
+        opacity: 0;
+        animation: fadeSlideshow 18s infinite;
+      }
+      .signup-image .slide:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .signup-image .slide:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .signup-image .slide:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .signup-image .slide:nth-child(4) {
+        animation-delay: 9s;
+      }
+      .signup-image .slide:nth-child(5) {
+        animation-delay: 12s;
+      }
+      .signup-image .slide:nth-child(6) {
+        animation-delay: 15s;
+      }
+      .social-login {
+        display: flex;
+        justify-content: center; /* center horizontally */
+        align-items: center; /* center vertically */
+        gap: 16px; /* equal spacing between icons */
+        margin-top: 20px;
+      }
+
+      .social-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; /* circular buttons */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .social-btn img,
+      .social-btn ion-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .social-btn:hover {
+        transform: scale(1.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .face-auth-card {
+        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 12px;
+        padding: 14px;
+      }
+
+      .face-auth-card h3 {
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .face-auth-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .face-camera-wrap {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      #faceVideo,
+      #faceCanvas {
+        width: 100%;
+        max-height: 220px;
+        object-fit: cover;
+        background: #101010;
+      }
+
+      #faceCanvas {
+        display: none;
+      }
+
+      .face-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .face-actions button {
+        flex: 1;
+        min-width: 120px;
+        background: #0f172a;
+        border: 1px solid #334155;
+        color: #fff;
+        padding: 10px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .face-actions button.primary {
+        background: #1d4ed8;
+        border-color: #1e40af;
+      }
+
+      .face-status {
+        font-size: 0.9rem;
+        min-height: 20px;
+        color: #dcfce7;
+      }
+
+      .face-note {
+        margin: 0;
+        font-size: 12px;
+        color: #dbeafe;
+        opacity: 0.95;
+      }
+
+      .google-btn {
+        background: #fff;
+      }
+      .facebook-btn {
+        background: #1877f2;
+      }
+      .apple-btn {
+        background: #000;
+        color: #fff;
+      }
+      .github-btn {
+        background: #24292f;
+      }
+
+      @keyframes fadeSlideshow {
+        0% {
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 1;
+        }
+        30% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="signup-section">
+      <!-- Left content -->
+      <div class="signup-content">
+        <h2>Create Your Account</h2>
+        <form class="signup-form">
+          <input type="text" id="fullName" placeholder="Full Name" required />
+          <input type="email" id="email" placeholder="Email Address" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+          />
+          <label for="source">How did you hear about us?</label>
+          <select id="source" required>
+            <option value="">Please choose one option:</option>
+            <option value="friends">Friends / Family</option>
+            <option value="social">Social Media</option>
+            <option value="ads">Online Ads</option>
+            <option value="other">Other</option>
+          </select>
+          <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="face-auth-card">
+          <h3>Face Login (New)</h3>
+          <p class="face-note">
+            Register your face once (with email + password), then sign in with your face.
+          </p>
+          <div class="face-auth-grid">
+            <input type="email" id="faceEmail" placeholder="Email for face login" />
+            <input type="password" id="facePassword" placeholder="Password (required only for face registration)" />
+            <div class="face-camera-wrap">
+              <video id="faceVideo" autoplay muted playsinline></video>
+              <canvas id="faceCanvas"></canvas>
+            </div>
+            <div class="face-actions">
+              <button id="faceStartCamera" type="button">Start Camera</button>
+              <button id="faceCapture" type="button">Capture Face</button>
+            </div>
+            <div class="face-actions">
+              <button id="faceRegisterBtn" type="button" class="primary">Register Face</button>
+              <button id="faceLoginBtn" type="button" class="primary">Login with Face</button>
+            </div>
+            <div id="faceStatus" class="face-status"></div>
+          </div>
+        </div>
+
+        <div class="divider">or</div>
+        <div class="social-login">
+          <div class="social-login">
+            <!-- <button id="googleLoginBtn" class="social-btn google-btn" title="Sign Up with Google">
+              <img
+                src="https://www.svgrepo.com/show/355037/google.svg"
+                alt="Google"
+              />
+            </button>
+
+            <button
+              class="social-btn facebook-btn"
+              title="Sign Up with Facebook"
+            >
+              <img
+                src="https://www.svgrepo.com/show/475647/facebook-color.svg"
+                alt="Facebook"
+              />
+            </button>
+
+            <button class="social-btn apple-btn" title="Sign Up with Apple">
+              <ion-icon name="logo-apple"></ion-icon>
+            </button>
+
+            <button onclick="githubLogin()" class="social-btn github-btn" title="Sign Up with GitHub">
+              <img
+                src="https://www.svgrepo.com/show/475654/github-color.svg"
+                alt="GitHub"
+              />
+            </button> -->
+            <button id="google-login-btn" class="google-btn">
+              <img
+                src="https://developers.google.com/identity/images/g-logo.png"
+              />
+              Sign in with Google
+            </button>
+
+            <!-- <button onclick="githubLogin()">Login with GitHub</button> -->
+            <!-- <div class="google-btn"></div> -->
+          </div>
+          <span class="switch-link" onclick="switchModal('signup', 'signin')"
+            >Already have an account? Sign In</span
+          >
+        </div>
+      </div>
+
+      <!-- Right image slideshow -->
+      <div class="signup-image">
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p6.jpg&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p5.jpg&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p4.jpg&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p3.jpg&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p2.jpg&quot;)"
+        ></div>
+        <div
+          class="slide"
+          style="background-image: url(&quot;img/p1.jpg&quot;)"
+        ></div>
+      </div>
+    </section>
+    <!-- <script>
+     import { signinUser } from './dbClient.js';
+   </script> -->
+
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <!-- <script src="./auth.js"></script> -->
+    <!-- <script type="module" src="./js/login.js"></script> -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script type="module" src="./js/auth.js"></script>
+  </body>
+</html>

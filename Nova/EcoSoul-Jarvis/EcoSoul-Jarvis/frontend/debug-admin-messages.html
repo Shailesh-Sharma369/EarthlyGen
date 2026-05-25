@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Debug Admin Messages</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #2563eb;
+      }
+      pre {
+        background: #f3f4f6;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+        max-height: 400px;
+      }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+      .info {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Admin Messages Debugger</h1>
+    <p>Token from localStorage: <span id="tokenStatus">Loading...</span></p>
+
+    <button onclick="testUsersAPI()">1. Test Users API</button>
+    <button onclick="testConversationAPI()">2. Test Conversation API</button>
+    <button onclick="clearLogs()">Clear Logs</button>
+
+    <h2>Logs:</h2>
+    <pre id="logs"></pre>
+
+    <script>
+      const API = "http://localhost:5002/api";
+      const token = localStorage.getItem("token");
+
+      function log(msg, type = "info") {
+        const logs = document.getElementById("logs");
+        const timestamp = new Date().toLocaleTimeString();
+        const color =
+          type === "error"
+            ? "#ef4444"
+            : type === "success"
+              ? "#10b981"
+              : "#3b82f6";
+        logs.innerHTML += `<span style="color: ${color};">[${timestamp}] ${msg}</span>\n`;
+        logs.scrollTop = logs.scrollHeight;
+      }
+
+      function clearLogs() {
+        document.getElementById("logs").innerHTML = "";
+      }
+
+      window.onload = function () {
+        if (token) {
+          document.getElementById("tokenStatus").innerHTML =
+            "✅ Token found: " + token.substring(0, 30) + "...";
+          document.getElementById("tokenStatus").className = "success";
+        } else {
+          document.getElementById("tokenStatus").innerHTML =
+            "❌ No token found. Please login first.";
+          document.getElementById("tokenStatus").className = "error";
+        }
+      };
+
+      async function testUsersAPI() {
+        log("Testing Users API...");
+        try {
+          const res = await fetch(`${API}/admin/messages/users/list`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          log(`Status: ${res.status}`, res.ok ? "success" : "error");
+
+          if (!res.ok) {
+            const error = await res.text();
+            log(`Error: ${error}`, "error");
+            return;
+          }
+
+          const users = await res.json();
+          log(`✅ Found ${users.length} users`, "success");
+
+          if (users.length > 0) {
+            users.slice(0, 3).forEach((u) => {
+              log(`  - ${u.fullName} (${u._id})`);
+            });
+            window.testUserId = users[0]._id;
+            log(
+              `Stored first user ID for next test: ${window.testUserId}`,
+              "info",
+            );
+          }
+        } catch (err) {
+          log(`Error: ${err.message}`, "error");
+        }
+      }
+
+      async function testConversationAPI() {
+        if (!window.testUserId) {
+          log('❌ No test user ID. Run "Test Users API" first.', "error");
+          return;
+        }
+
+        log(`Testing Conversation API with user: ${window.testUserId}`);
+        try {
+          const res = await fetch(
+            `${API}/admin/messages/conversation/${window.testUserId}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
+
+          log(`Status: ${res.status}`, res.ok ? "success" : "error");
+
+          if (!res.ok) {
+            const error = await res.text();
+            log(`Error: ${error}`, "error");
+            return;
+          }
+
+          const messages = await res.json();
+          log(`✅ Found ${messages.length} messages`, "success");
+
+          if (messages.length > 0) {
+            messages.forEach((m, i) => {
+              const sender = m.senderId?.fullName || m.senderId;
+              const receiver = m.receiverId?.fullName || m.receiverId;
+              log(
+                `  ${i + 1}. ${sender} → ${receiver}: "${m.text.substring(0, 40)}..." (${m.messageType})`,
+              );
+            });
+          } else {
+            log("⚠️  No messages found for this user", "info");
+          }
+
+          log("Full response structure:", "info");
+          log(JSON.stringify(messages.slice(0, 1), null, 2));
+        } catch (err) {
+          log(`Error: ${err.message}`, "error");
+        }
+      }
+    </script>
+  </body>
+</html>

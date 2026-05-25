@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/OG.jpg" />
+    <title>SocialCart</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <script type="module" src="backend/server.js" defer></script> -->
+    <!-- Global API config (must load before Ruhi) -->
+    <script src="config.js"></script>
+    <!-- Profile Picture Sync (Real-time across all pages) -->
+    <script src="js/profilePicSync.js"></script>
+    <!-- Ruhi AI Assistant -->
+    <script src="ruhi.js" defer></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        padding-top: 64px;
+        width: 100%;
+        overflow: hidden;
+      }
+      .hero video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+      }
+      .hero video.active {
+        opacity: 1;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: -1;
+      }
+
+      /* Navbar */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        color: white;
+        font-weight: bold;
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+      }
+      nav.scrolled {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .logo {
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+      nav ul li {
+        position: relative;
+        cursor: pointer;
+        padding-bottom: 5px;
+      }
+      nav ul li::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: #ffcc00;
+        transition: width 0.3s ease-in-out;
+      }
+      nav ul li:hover::after {
+        width: 100%;
+      }
+      .auth-btns {
+        margin-left: 20px;
+      }
+      .auth-btns button {
+        background: #ffcc00;
+        color: #000;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .auth-btns button:hover {
+        background: #e6b800;
+      }
+      .hamburger {
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 25;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 15px;
+        }
+        .logo {
+          font-size: 1.3rem;
+        }
+        nav ul {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          height: 100%;
+          width: 70%;
+          max-width: 250px;
+          background: rgba(0, 0, 0, 0.95);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 25px;
+          transition: right 0.4s ease-in-out;
+          border-left: 2px solid #ffcc00;
+        }
+        nav ul.active {
+          right: 0;
+        }
+        .hamburger {
+          display: block;
+        }
+        .auth-btns {
+          margin-left: 0;
+        }
+        .auth-btns button {
+          padding: 6px 12px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 12px 10px;
+        }
+        .logo {
+          font-size: 1.1rem;
+          letter-spacing: 0.5px;
+        }
+        nav ul {
+          width: 80%;
+        }
+      }
+
+      /* Hero Text */
+      .hero-text {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        animation: fadeIn 2s ease-in-out;
+        padding: 0 20px;
+        width: 100%;
+      }
+      .hero-text h1 {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      }
+      .hero-text p {
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+      }
+
+      @media (max-width: 768px) {
+        .hero-text h1 {
+          font-size: 2.3rem;
+          margin-bottom: 10px;
+        }
+        .hero-text p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-text {
+          top: 35%;
+          padding: 0 15px;
+        }
+        .hero-text h1 {
+          font-size: 1.8rem;
+          margin-bottom: 8px;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+        .hero-text p {
+          font-size: 0.85rem;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      @media (max-width: 320px) {
+        .hero-text h1 {
+          font-size: 1.4rem;
+        }
+        .hero-text p {
+          font-size: 0.75rem;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -60%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .hero-subtext {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .hero-subtext h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 8px 15px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-subtext {
+          margin-top: 12px;
+          gap: 10px;
+        }
+        .hero-subtext h3 {
+          font-size: 0.85rem;
+          padding: 6px 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-subtext {
+          margin-top: 10px;
+          gap: 8px;
+        }
+        .hero-subtext h3 {
+          font-size: 0.7rem;
+          padding: 5px 8px;
+        }
+      }
+
+      /* Bottom Menu */
+      .bottom-menu {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 10px;
+      }
+      .bottom-menu span {
+        cursor: pointer;
+        padding: 8px 8px;
+        border-radius: 20px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+      .bottom-menu span.active,
+      .bottom-menu span:hover {
+        border: 2px solid #ffcc00;
+        color: #ffcc00;
+        background: rgba(255, 204, 0, 0.15);
+        box-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+      }
+
+      @media (max-width: 768px) {
+        .bottom-menu {
+          bottom: 5px;
+          gap: 6px;
+          font-size: 0.9rem;
+        }
+        .bottom-menu span {
+          padding: 5px 6px;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .bottom-menu {
+          bottom: 0;
+          gap: 3px;
+          font-size: 0.75rem;
+        }
+        .bottom-menu span {
+          padding: 4px 5px;
+          border-radius: 15px;
+          font-size: 0.7rem;
+        }
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      }
+      .signup-section {
+        position: relative;
+        display: flex;
+        max-width: 900px;
+        width: 95%;
+        max-height: 90vh;
+        background: rgba(27, 67, 50, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      }
+      .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: transparent;
+        border: none;
+        font-size: 26px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        z-index: 10;
+        transition:
+          transform 0.2s ease,
+          color 0.2s ease;
+      }
+      .close-btn:hover {
+        transform: scale(1.2);
+        color: #ff6b6b;
+      }
+      .signup-content {
+        flex: 1;
+        padding: 40px;
+        color: #fff;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .signup-content::-webkit-scrollbar {
+        width: 6px;
+      }
+      .signup-content::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+      .signup-content::-webkit-scrollbar-thumb {
+        background: rgba(255, 204, 0, 0.6);
+        border-radius: 10px;
+      }
+      .signup-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 204, 0, 0.8);
+      }
+      .signup-content h2 {
+        margin-bottom: 20px;
+      }
+      .signup-form,
+      .signin-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      #companySignupForm {
+        gap: 10px;
+      }
+      #companySignupForm input,
+      #companySignupForm select {
+        padding: 10px;
+      }
+      #companysignupModal .signup-content h2 {
+        margin-bottom: 10px;
+        font-size: 1.6rem;
+      }
+      #companysignupModal .divider {
+        margin: 12px 0;
+      }
+      #companysigninModal .signup-content h2 {
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+      }
+      #companysigninModal .divider {
+        margin: 15px 0;
+      }
+      #companysignupModal .signup-content {
+        padding: 30px 40px;
+      }
+      #companySignupForm button[type=\"submit\"] {
+        padding: 12px;
+        margin-top: 5px;
+      }
+      #companysignupModal .switch-link,
+      #companysigninModal .switch-link {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      .signup-form input,
+      .signup-form select,
+      .signin-form input {
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+      .signup-form button,
+      .signin-form button {
+        background: #4e2c0a;
+        color: #fff;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 10px;
+      }
+      .signup-form button:hover,
+      .signin-form button:hover {
+        background: #3b2007;
+      }
+
+      @media (max-width: 768px) {
+        .signup-image {
+          display: none;
+        }
+        .signup-section {
+          width: 90%;
+          max-height: 95vh;
+        }
+        .signup-content {
+          padding: 25px;
+        }
+        .signup-form input,
+        .signup-form select,
+        .signin-form input {
+          padding: 10px;
+          font-size: 0.95rem;
+        }
+        .signup-form button,
+        .signin-form button {
+          padding: 12px;
+          font-size: 0.95rem;
+        }
+        .close-btn {
+          top: 8px;
+          right: 8px;
+          font-size: 22px;
+        }
+        #companysignupModal .signup-content {
+          padding: 20px;
+        }
+        #companysignupModal .signup-content h2 {
+          font-size: 1.3rem;
+          margin-bottom: 8px;
+        }
+        #companysigninModal .signup-content h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .modal {
+          padding: 0;
+        }
+        .signup-section {
+          width: 95%;
+          max-height: 100vh;
+          border-radius: 8px;
+          max-width: none;
+        }
+        .signup-content {
+          padding: 20px;
+          max-height: 100vh;
+        }
+        .signup-form input,
+        .signup-form select,
+        .signin-form input {
+          padding: 9px;
+          font-size: 0.9rem;
+        }
+        .signup-form button,
+        .signin-form button {
+          padding: 11px;
+          font-size: 0.9rem;
+        }
+        .signup-content h2 {
+          margin-bottom: 15px;
+          font-size: 1.4rem;
+        }
+        .close-btn {
+          top: 6px;
+          right: 6px;
+          font-size: 20px;
+        }
+        #companysignupModal .signup-content {
+          padding: 18px;
+        }
+        #companysignupModal .signup-content h2 {
+          font-size: 1.2rem;
+        }
+        #companysigninModal .signup-content h2 {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .signup-section {
+          width: 100%;
+        }
+        .signup-content {
+          padding: 15px;
+        }
+        .signup-content h2 {
+          font-size: 1.2rem;
+        }
+      }
+      .signup-image .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: fadeSlideshow 18s infinite;
+      }
+      .signup-image .slide:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .signup-image .slide:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .signup-image .slide:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .signup-image .slide:nth-child(4) {
+        animation-delay: 9s;
+      }
+      .signup-image .slide:nth-child(5) {
+        animation-delay: 12s;
+      }
+      .signup-image .slide:nth-child(6) {
+        animation-delay: 15s;
+      }
+      @keyframes fadeSlideshow {
+        0% {
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 1;
+        }
+        30% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Products Section */
+      .products {
+        padding: 60px 20px;
+        background: #f5f5f5;
+      }
+      .product-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+      .product-card img {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .product-card h3 {
+        margin: 15px 0 10px;
+      }
+      .product-card .price {
+        color: #10b981;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .add-to-cart-btn {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background 0.3s;
+      }
+      .add-to-cart-btn:hover {
+        background: #0056b3;
+      }
+
+      /* Login Type Selection Modal */
+      .login-type-modal {
+        text-align: center;
+        padding: 40px;
+      }
+      .login-type-modal h2 {
+        color: #fff;
+        margin-bottom: 30px;
+        font-size: 2rem;
+      }
+      .login-options {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .login-option {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 204, 0, 0.5);
+        border-radius: 12px;
+        padding: 30px;
+        width: 200px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+      .login-option:hover {
+        background: rgba(255, 204, 0, 0.2);
+        border-color: #ffcc00;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
+      }
+      .login-option ion-icon {
+        font-size: 60px;
+        color: #ffcc00;
+        margin-bottom: 15px;
+      }
+      .login-option h3 {
+        color: #fff;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+      .login-option p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .login-type-modal {
+          padding: 30px 20px;
+        }
+        .login-type-modal h2 {
+          font-size: 1.5rem;
+          margin-bottom: 20px;
+        }
+        .login-options {
+          gap: 15px;
+        }
+        .login-option {
+          padding: 20px;
+          width: 160px;
+        }
+        .login-option ion-icon {
+          font-size: 45px;
+          margin-bottom: 10px;
+        }
+        .login-option h3 {
+          font-size: 1rem;
+        }
+        .login-option p {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .login-type-modal {
+          padding: 20px 15px;
+        }
+        .login-type-modal h2 {
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+        }
+        .login-options {
+          gap: 10px;
+          flex-direction: column;
+        }
+        .login-option {
+          padding: 15px;
+          width: 100%;
+        }
+        .login-option ion-icon {
+          font-size: 35px;
+          margin-bottom: 8px;
+        }
+        .login-option h3 {
+          font-size: 0.95rem;
+        }
+        .login-option p {
+          font-size: 0.75rem;
+        }
+      }
+
+      .divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+        font-weight: bold;
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .divider::before {
+        left: 0;
+      }
+      .divider::after {
+        right: 0;
+      }
+
+      @media (max-width: 480px) {
+        .divider {
+          margin: 12px 0;
+        }
+      }
+
+      .social-login {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 20px;
+      }
+      .social-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .social-btn img,
+      .social-btn ion-icon {
+        width: 24px;
+        height: 24px;
+      }
+      .social-btn:hover {
+        transform: scale(1.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      }
+      .google-btn,
+      .facebook-btn,
+      .github-btn {
+        background: #fff;
+      }
+      .apple-btn {
+        background: #000;
+        color: #fff;
+        font-size: 26px;
+      }
+      .switch-link {
+        margin-top: 20px;
+        display: block;
+        color: #00bfff;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        .switch-link {
+          margin-top: 12px;
+          font-size: 0.85rem;
+        }
+      }
+
+      .signup-image {
+        flex: 1;
+        border-radius: 0 12px 12px 0;
+        position: relative;
+        overflow: hidden;
+        min-height: 400px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero">
+      <video id="video-india360" class="active" autoplay muted loop>
+        <source src="img/e1-5.mp4" type="video/mp4" />
+      </video>
+      <video id="video-adventure" autoplay muted loop>
+        <source src="img/e1-1.mp4" type="video/mp4" />
+      </video>
+      <video id="video-nature" autoplay muted loop>
+        <source src="img/e1-0.mp4" type="video/mp4" />
+      </video>
+      <video id="video-wildlife" autoplay muted loop>
+        <source src="img/e1-2.mp4" type="video/mp4" />
+      </video>
+      <video id="video-heritage" autoplay muted loop>
+        <source src="img/e1-3.mp4" type="video/mp4" />
+      </video>
+      <video id="video-spiritual" autoplay muted loop>
+        <source src="img/e1-4.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay"></div>
+
+      <nav id="navbar">
+        <div class="logo">EarthlyGen</div>
+        <ul id="nav-links">
+          <li>Home</li>
+          <li>All Products</li>
+          <li>About Us</li>
+          <li>Contact</li>
+          <li>Offers</li>
+        </ul>
+        <div class="auth-btns" id="auth-buttons">
+          <button onclick="openModal('login')">Login</button>
+        </div>
+        <div id="user-profile" style="display: none"></div>
+      </nav>
+
+      <div class="hero-text" id="heroText">
+        <h1>Discover Organic Goodness</h1>
+        <p>Fresh | Natural | Healthy | Eco-Friendly</p>
+        <div class="hero-subtext">
+          <h3>🌱 100% Organic Products</h3>
+          <h3>🚚 Home Delivery</h3>
+          <h3>💚 Sustainably Sourced</h3>
+          <h3>⭐ Trusted by Thousands</h3>
+        </div>
+      </div>
+
+      <div class="bottom-menu" id="bottomMenu">
+        <span data-video="video-india360" class="active">Eco-Products</span>
+        <span data-video="video-adventure">Eco-Goods</span>
+        <span data-video="video-nature">Organic Packs</span>
+        <span data-video="video-wildlife">Sustainable</span>
+        <span data-video="video-heritage">Zero-Waste</span>
+        <span data-video="video-spiritual">Organic Goodness</span>
+      </div>
+    </section>
+    <!-- 
+    <section class="products">
+      <div class="product-card">
+        <img src="img/product.jpg" alt="Product" />
+        <h3>Product Name</h3>
+        <p class="price">₹499</p>
+        <button class="add-to-cart-btn" data-product-id="prod-123" data-product-name="Product Name" data-product-price="499" data-product-image="img/product.jpg">Add to Cart</button>
+      </div>
+    </section> -->
+
+    <!-- Login Type Selection Modal -->
+    <div class="modal" id="loginModal">
+      <div class="signup-section" style="max-width: 700px">
+        <button class="close-btn" onclick="closeModal('login')">&times;</button>
+        <div class="login-type-modal">
+          <h2>Choose Login Type</h2>
+          <div class="login-options">
+            <div class="login-option" onclick="openUserLogin()">
+              <ion-icon name="person"></ion-icon>
+              <h3>User Login</h3>
+              <p>Login as a regular user</p>
+            </div>
+            <div class="login-option" onclick="openCompanyLogin()">
+              <ion-icon name="business"></ion-icon>
+              <h3>Company Login</h3>
+              <p>Login as a business/company</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="modal" id="signinModal">
+      <div class="signup-section">
+        <button class="close-btn" onclick="closeModal('signin')">
+          &times;
+        </button>
+        <div class="signup-content">
+          <h2>Welcome Back</h2>
+          <form class="signin-form" id="signinForm">
+            <input
+              type="email"
+              id="signinEmail"
+              placeholder="Email Address"
+              required
+              autocomplete="email"
+            />
+            <input
+              type="password"
+              id="signinPassword"
+              placeholder="Password"
+              required
+              autocomplete="current-password"
+            />
+            <div
+              id="signin-error"
+              style="color: #ff6b6b; font-size: 14px; display: none"
+            ></div>
+            <div style="text-align: right; margin-bottom: 10px">
+              <button
+                type="button"
+                onclick="handleForgotPassword('user')"
+                style="
+                  background: none;
+                  border: none;
+                  color: #ffcc00;
+                  cursor: pointer;
+                  font-size: 13px;
+                  text-decoration: underline;
+                  padding: 0;
+                "
+              >
+                🔑 Forgot Password?
+              </button>
+            </div>
+            <button type="submit">Sign In</button>
+          </form>
+          <div class="divider">or</div>
+          <div class="social-login">
+            <div
+              class="google-btn"
+              style="
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                margin-bottom: 10px;
+              "
+            ></div>
+          </div>
+          <span class="switch-link" onclick="switchModal('signin', 'signup')"
+            >Don't have an account? Sign Up</span
+          >
+        </div>
+        <div class="signup-image">
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p6.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p5.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p4.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p3.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p2.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p1.jpg&quot;)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signupModal">
+      <div class="signup-section">
+        <button class="close-btn" onclick="closeModal('signup')">
+          &times;
+        </button>
+        <div class="signup-content">
+          <h2>Create Your Account</h2>
+          <form class="signup-form" id="signupForm">
+            <input type="text" id="fullName" placeholder="Full Name" required />
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              required
+              autocomplete="email"
+            />
+            <input
+              type="password"
+              id="password"
+              placeholder="Password (min 8 characters)"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              required
+              autocomplete="new-password"
+            />
+            <select id="source" required>
+              <option value="">How did you hear about us?</option>
+              <option value="friends">Friends / Family</option>
+              <option value="social">Social Media</option>
+              <option value="ads">Online Ads</option>
+              <option value="other">Other</option>
+            </select>
+            <div
+              id="signup-error"
+              style="color: #ff6b6b; font-size: 14px; display: none"
+            ></div>
+            <button type="submit">Sign Up</button>
+          </form>
+          <div class="divider">or</div>
+          <div class="social-login">
+            <div
+              class="google-btn"
+              style="
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                margin-bottom: 10px;
+              "
+            ></div>
+          </div>
+          <span class="switch-link" onclick="switchModal('signup', 'signin')"
+            >Already have an account? Sign In</span
+          >
+        </div>
+        <div class="signup-image">
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p1.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p2.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p3.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p4.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p5.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p6.jpg&quot;)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Sign In Modal -->
+    <div class="modal" id="companysigninModal">
+      <div class="signup-section">
+        <button class="close-btn" onclick="closeModal('companysignin')">
+          &times;
+        </button>
+        <div class="signup-content">
+          <h2>Company Login</h2>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px">
+            Welcome back to your company account
+          </p>
+          <form class="signin-form" id="companySigninForm">
+            <input
+              type="email"
+              id="companySigninEmail"
+              placeholder="Company Email Address"
+              required
+              autocomplete="email"
+            />
+            <input
+              type="password"
+              id="companySigninPassword"
+              placeholder="Password"
+              required
+              autocomplete="current-password"
+            />
+            <div
+              id="company-signin-error"
+              style="color: #ff6b6b; font-size: 14px; display: none"
+            ></div>
+            <div style="text-align: right; margin-bottom: 10px">
+              <button
+                type="button"
+                onclick="handleForgotPassword('company')"
+                style="
+                  background: none;
+                  border: none;
+                  color: #ffcc00;
+                  cursor: pointer;
+                  font-size: 13px;
+                  text-decoration: underline;
+                  padding: 0;
+                "
+              >
+                🔑 Forgot Password?
+              </button>
+            </div>
+            <button type="submit">Sign In</button>
+          </form>
+          <div class="divider">or</div>
+          <div class="social-login">
+            <div
+              class="google-btn"
+              style="
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                margin-bottom: 10px;
+              "
+            ></div>
+          </div>
+          <span
+            class="switch-link"
+            onclick="switchModal('companysignin', 'companysignup')"
+            >Don't have an account? Sign Up as Company</span
+          >
+        </div>
+        <div class="signup-image">
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p6.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p5.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p4.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p3.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p2.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p1.jpg&quot;)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Sign Up Modal -->
+    <div class="modal" id="companysignupModal">
+      <div class="signup-section">
+        <button class="close-btn" onclick="closeModal('companysignup')">
+          &times;
+        </button>
+        <div class="signup-content">
+          <h2>Create Company Account</h2>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.8);
+              margin-bottom: 15px;
+              font-size: 14px;
+            "
+          >
+            Register your business with us
+          </p>
+          <form class="signup-form" id="companySignupForm">
+            <input
+              type="text"
+              id="companyName"
+              placeholder="Company Name"
+              required
+            />
+            <input
+              type="email"
+              id="companyEmail"
+              placeholder="Company Email Address"
+              required
+              autocomplete="email"
+            />
+            <input
+              type="tel"
+              id="companyPhone"
+              placeholder="Contact Number"
+              required
+            />
+            <input
+              type="text"
+              id="companyGST"
+              placeholder="GST Number (Optional)"
+            />
+            <input
+              type="text"
+              id="companyAddress"
+              placeholder="Business Address"
+              required
+            />
+            <input
+              type="password"
+              id="companyPassword"
+              placeholder="Password (min 8 characters)"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+            <input
+              type="password"
+              id="companyConfirmPassword"
+              placeholder="Confirm Password"
+              required
+              autocomplete="new-password"
+            />
+            <select id="companyType" required>
+              <option value="">Select Business Type</option>
+              <option value="manufacturer">Manufacturer</option>
+              <option value="distributor">Distributor</option>
+              <option value="retailer">Retailer</option>
+              <option value="wholesaler">Wholesaler</option>
+              <option value="other">Other</option>
+            </select>
+            <div
+              id="company-signup-error"
+              style="color: #ff6b6b; font-size: 14px; display: none"
+            ></div>
+            <button type="submit">Sign Up</button>
+          </form>
+          <div class="divider">or</div>
+          <div class="social-login">
+            <div
+              class="google-btn"
+              style="
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                margin-bottom: 10px;
+              "
+            ></div>
+          </div>
+          <span
+            class="switch-link"
+            onclick="switchModal('companysignup', 'companysignin')"
+            >Already have an account? Sign In</span
+          >
+        </div>
+        <div class="signup-image">
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p1.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p2.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p3.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p4.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p5.jpg&quot;)"
+          ></div>
+          <div
+            class="slide"
+            style="background-image: url(&quot;img/p6.jpg&quot;)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script type="module">
+      import {
+        signupUser,
+        signinUser,
+        isUserLoggedIn,
+        logoutUser,
+      } from "./dbClient.js";
+      import { addProductToCart, showToast, getCartItems } from "./cartApi.js";
+      const API_BASE_URL =
+        window.API_CONFIG?.API_URL ||
+        `${window.location.protocol}//${window.location.host}/api`;
+
+      // Make API_BASE_URL globally accessible for inline onclick handlers
+      window.API_BASE_URL = API_BASE_URL;
+
+      // Update Auth UI based on login status
+      function updateAuthUI() {
+        const isLoggedIn = isUserLoggedIn();
+        const userName = localStorage.getItem("userName");
+        const authButtons = document.getElementById("auth-buttons");
+        const userProfile = document.getElementById("user-profile");
+
+        if (isLoggedIn && userName) {
+          if (authButtons) authButtons.style.display = "none";
+          if (userProfile) {
+            userProfile.style.display = "block";
+            userProfile.innerHTML = `
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="color: white;">Hi, ${userName.split(" ")[0]}</span>
+                <button onclick="window.location.href='acc.html'" style="background: #ffcc00; color: #000; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold;">My Account</button>
+                <button id="logoutBtn" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 20px; cursor: pointer;">Logout</button>
+              </div>
+            `;
+            document
+              .getElementById("logoutBtn")
+              ?.addEventListener("click", () => {
+                if (confirm("Are you sure you want to logout?")) {
+                  logoutUser();
+                }
+              });
+          }
+        } else {
+          if (authButtons) authButtons.style.display = "block";
+          if (userProfile) userProfile.style.display = "none";
+        }
+      }
+
+      // Signup Form Handler
+      document
+        .getElementById("signupForm")
+        ?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const errorDiv = document.getElementById("signup-error");
+          errorDiv.style.display = "none";
+
+          const fullName = document.getElementById("fullName").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+          const source = document.getElementById("source").value;
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.textContent = "Creating account...";
+          submitBtn.disabled = true;
+
+          const result = await signupUser({
+            fullName,
+            email,
+            password,
+            confirmPassword,
+            source,
+          });
+
+          if (result.success) {
+            showToast("Account created successfully!", "success");
+            closeModal("signup");
+            updateAuthUI();
+            setTimeout(() => (window.location.href = "social.html"), 1000);
+          } else {
+            errorDiv.textContent = result.message || "Signup failed!";
+            errorDiv.style.display = "block";
+            submitBtn.textContent = "Sign Up";
+            submitBtn.disabled = false;
+          }
+        });
+
+      document
+        .getElementById("signinForm")
+        ?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const errorDiv = document.getElementById("signin-error");
+          errorDiv.style.display = "none";
+
+          const email = document.getElementById("signinEmail").value.trim();
+          const password = document.getElementById("signinPassword").value;
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.textContent = "Signing in...";
+          submitBtn.disabled = true;
+
+          const result = await signinUser({ email, password });
+
+          if (result.success) {
+            showToast("Signed in successfully!", "success");
+            closeModal("signin");
+            updateAuthUI();
+            setTimeout(() => (window.location.href = "social.html"), 1000);
+          } else {
+            errorDiv.textContent = result.message || "Sign in failed!";
+            errorDiv.style.display = "block";
+            submitBtn.textContent = "Sign In";
+            submitBtn.disabled = false;
+          }
+        });
+
+      // Company Signup Form Handler
+      document
+        .getElementById("companySignupForm")
+        ?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const errorDiv = document.getElementById("company-signup-error");
+          errorDiv.style.display = "none";
+
+          const companyName = document
+            .getElementById("companyName")
+            .value.trim();
+          const companyEmail = document
+            .getElementById("companyEmail")
+            .value.trim();
+          const companyPhone = document
+            .getElementById("companyPhone")
+            .value.trim();
+          const companyGST = document.getElementById("companyGST").value.trim();
+          const companyAddress = document
+            .getElementById("companyAddress")
+            .value.trim();
+          const companyPassword =
+            document.getElementById("companyPassword").value;
+          const companyConfirmPassword = document.getElementById(
+            "companyConfirmPassword",
+          ).value;
+          const companyType = document.getElementById("companyType").value;
+
+          if (companyPassword !== companyConfirmPassword) {
+            errorDiv.textContent = "Passwords do not match!";
+            errorDiv.style.display = "block";
+            return;
+          }
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.textContent = "Creating account...";
+          submitBtn.disabled = true;
+
+          try {
+            const response = await fetch(
+              `${API_BASE_URL}/auth/company/signup`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  companyName,
+                  email: companyEmail,
+                  phone: companyPhone,
+                  gstNumber: companyGST,
+                  address: companyAddress,
+                  password: companyPassword,
+                  businessType: companyType,
+                }),
+              },
+            );
+
+            let data;
+            try {
+              data = await response.json();
+            } catch (jsonError) {
+              console.error("Failed to parse response:", jsonError);
+              throw new Error(
+                `Server error ${response.status}: Invalid response format`,
+              );
+            }
+
+            if (!response.ok) {
+              throw new Error(
+                data.message || `Server error: ${response.status}`,
+              );
+            }
+
+            if (data.success) {
+              showToast("Company account created successfully!", "success");
+              localStorage.setItem("companyToken", data.token);
+              localStorage.setItem("companyId", data.companyId);
+              localStorage.setItem("companyName", companyName);
+              localStorage.setItem("userType", "company");
+              closeModal("companysignup");
+              setTimeout(
+                () => (window.location.href = "company-dashboard.html"),
+                1000,
+              );
+            } else {
+              errorDiv.textContent = data.message || "Registration failed!";
+              errorDiv.style.display = "block";
+              submitBtn.textContent = "Sign Up";
+              submitBtn.disabled = false;
+            }
+          } catch (error) {
+            console.error("Company signup error:", error);
+            errorDiv.textContent = "An error occurred. Please try again.";
+            errorDiv.style.display = "block";
+            submitBtn.textContent = "Sign Up";
+            submitBtn.disabled = false;
+          }
+        });
+
+      // Company Signin Form Handler
+      document
+        .getElementById("companySigninForm")
+        ?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const errorDiv = document.getElementById("company-signin-error");
+          errorDiv.style.display = "none";
+
+          const email = document
+            .getElementById("companySigninEmail")
+            .value.trim();
+          const password = document.getElementById(
+            "companySigninPassword",
+          ).value;
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.textContent = "Signing in...";
+          submitBtn.disabled = true;
+
+          try {
+            const response = await fetch(
+              `${API_BASE_URL}/auth/company/signin`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+              },
+            );
+
+            let data;
+            try {
+              data = await response.json();
+            } catch (jsonError) {
+              console.error("Failed to parse response:", jsonError);
+              throw new Error(
+                `Server error ${response.status}: Invalid response format`,
+              );
+            }
+
+            if (!response.ok) {
+              throw new Error(
+                data.message || `Server error: ${response.status}`,
+              );
+            }
+
+            if (data.success) {
+              showToast("Signed in successfully!", "success");
+              localStorage.setItem("companyToken", data.token);
+              localStorage.setItem("companyId", data.companyId);
+              localStorage.setItem("companyName", data.companyName);
+              localStorage.setItem("userType", "company");
+              closeModal("companysignin");
+              setTimeout(
+                () => (window.location.href = "company-dashboard.html"),
+                1000,
+              );
+            } else {
+              errorDiv.textContent = data.message || "Sign in failed!";
+              errorDiv.style.display = "block";
+              submitBtn.textContent = "Sign In";
+              submitBtn.disabled = false;
+            }
+          } catch (error) {
+            console.error("Company signin error:", error);
+            errorDiv.textContent = "An error occurred. Please try again.";
+            errorDiv.style.display = "block";
+            submitBtn.textContent = "Sign In";
+            submitBtn.disabled = false;
+          }
+        });
+
+      // Add to Cart Handler
+      // window.addToCart = async function(productData) {
+      //   if (!isUserLoggedIn()) {
+      //     showToast("Please login to add items to cart", "error");
+      //     openModal("signin");
+      //     return;
+      //   }
+      //   await addProductToCart(productData);
+      // };
+
+      // Attach click handlers to add-to-cart buttons
+      document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const productData = {
+            id: this.dataset.productId,
+            name: this.dataset.productName,
+            price: parseFloat(this.dataset.productPrice),
+            quantity: 1,
+            image:
+              this.dataset.productImage || "https://via.placeholder.com/150",
+          };
+          addToCart(productData);
+        });
+      });
+
+      // Initialize on page load
+      document.addEventListener("DOMContentLoaded", updateAuthUI);
+    </script>
+
+    <!-- Non-module scripts for basic UI -->
+    <script>
+      // Navbar Scroll Effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        navbar?.classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // Hamburger Toggle
+      function toggleMenu() {
+        document.getElementById("nav-links").classList.toggle("active");
+      }
+
+      // Video Switcher
+      const videos = document.querySelectorAll(".hero video");
+      const menuItems = document.querySelectorAll(".bottom-menu span");
+      let currentIndex = 0;
+      let videoInterval;
+
+      function changeVideo(index) {
+        videos.forEach((v) => v.classList.remove("active"));
+        menuItems.forEach((m) => m.classList.remove("active"));
+        videos[index]?.classList.add("active");
+        menuItems[index]?.classList.add("active");
+        currentIndex = index;
+        resetVideoInterval();
+      }
+
+      function autoChangeVideo() {
+        currentIndex = (currentIndex + 1) % videos.length;
+        changeVideo(currentIndex);
+      }
+
+      function resetVideoInterval() {
+        clearInterval(videoInterval);
+        videoInterval = setInterval(autoChangeVideo, 6000);
+      }
+
+      menuItems.forEach((item, index) => {
+        item.addEventListener("mouseenter", () => changeVideo(index));
+      });
+
+      resetVideoInterval();
+
+      // Modal Functions
+      function openModal(type) {
+        document.getElementById(type + "Modal").style.display = "flex";
+      }
+
+      function closeModal(type) {
+        document.getElementById(type + "Modal").style.display = "none";
+      }
+
+      function switchModal(from, to) {
+        closeModal(from);
+        openModal(to);
+      }
+
+      window.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) {
+          const modalType = e.target.id.replace("Modal", "");
+          closeModal(modalType);
+        }
+      });
+
+      // Login type selection functions
+      function openUserLogin() {
+        closeModal("login");
+        openModal("signin");
+      }
+
+      function openCompanyLogin() {
+        closeModal("login");
+        openModal("companysignin");
+      }
+
+      // Handle Forgot Password for both user and company
+      function handleForgotPassword(type) {
+        const email =
+          type === "user"
+            ? document.getElementById("signinEmail")?.value
+            : document.getElementById("companySigninEmail")?.value;
+
+        if (!email) {
+          let message =
+            type === "user"
+              ? "Please enter your email first"
+              : "Please enter your company email first";
+          alert(message);
+          return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address");
+          return;
+        }
+
+        (async () => {
+          try {
+            const response = await fetch(
+              `${window.API_BASE_URL}/users/forgot-password`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  email: email,
+                  userType: type,
+                }),
+              },
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              alert(
+                "✅ Password reset link sent! Please check your email inbox and follow the link to reset your password.",
+              );
+
+              // Show success message
+              const msgElement =
+                type === "user"
+                  ? document.getElementById("signin-error")
+                  : document.getElementById("company-signin-error");
+              if (msgElement) {
+                msgElement.style.color = "#51cf66";
+                msgElement.style.display = "block";
+                msgElement.textContent = "✓ Reset link sent! Check your email";
+                setTimeout(() => {
+                  msgElement.style.display = "none";
+                }, 4000);
+              }
+            } else {
+              const errData = await response.json();
+              alert(
+                `❌ Error: ${errData.message || "Email not found or error occurred"}`,
+              );
+            }
+          } catch (err) {
+            console.error("Forgot password error:", err);
+            alert(`❌ Error: ${err.message}`);
+          }
+        })();
+      }
+
+      // Expose functions globally
+      window.toggleMenu = toggleMenu;
+      window.openModal = openModal;
+      window.closeModal = closeModal;
+      window.switchModal = switchModal;
+      window.openUserLogin = openUserLogin;
+      window.openCompanyLogin = openCompanyLogin;
+      window.handleForgotPassword = handleForgotPassword;
+    </script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="./js/auth.js"></script>
+
+    <script>
+      async function handleLogin() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+          alert("Please enter both email and password");
+          return;
+        }
+
+        try {
+          const res = await fetch("http://localhost:5002/api/auth/signin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+
+          console.log("LOGIN HTTP Status:", res.status);
+
+          let data;
+          try {
+            data = await res.json();
+            console.log("LOGIN RESPONSE:", data);
+          } catch (parseError) {
+            console.error("JSON parse error:", parseError);
+            alert("Server returned invalid response. Please try again.");
+            return;
+          }
+
+          if (!res.ok) {
+            alert(
+              data.message || `Login failed: Server returned ${res.status}`,
+            );
+            return;
+          }
+
+          if (!data.success) {
+            alert(data.message || "Login failed");
+            return;
+          }
+
+          // 🔑 MOST IMPORTANT LINES
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("isLoggedIn", "true");
+
+          alert("Login successful! Redirecting...");
+          setTimeout(() => {
+            window.location.href = "social.html";
+          }, 500);
+        } catch (err) {
+          console.error("Login error:", err);
+          alert(
+            "Network error: " +
+              err.message +
+              ". Please check if backend server is running on port 5002.",
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

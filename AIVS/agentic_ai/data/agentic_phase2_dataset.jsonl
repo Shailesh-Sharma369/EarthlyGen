@@ -1,0 +1,20 @@
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Search iphone under 50000\nAssistant: {\"intent\": \"product_search\", \"tool\": \"search\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Find laptops under 70000\nAssistant: {\"intent\": \"product_search\", \"tool\": \"search\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Show shoes below 3000\nAssistant: {\"intent\": \"product_search\", \"tool\": \"search\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Search samsung phones\nAssistant: {\"intent\": \"product_search\", \"tool\": \"search\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Order 2 kg rice\nAssistant: {\"intent\": \"place_order\", \"tool\": \"order\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Buy 1 litre milk\nAssistant: {\"intent\": \"place_order\", \"tool\": \"order\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Order 3 packets of biscuits\nAssistant: {\"intent\": \"place_order\", \"tool\": \"order\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Place order for sugar\nAssistant: {\"intent\": \"place_order\", \"tool\": \"order\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Track my order\nAssistant: {\"intent\": \"track_order\", \"tool\": \"track\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Where is my order?\nAssistant: {\"intent\": \"track_order\", \"tool\": \"track\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Check delivery status\nAssistant: {\"intent\": \"track_order\", \"tool\": \"track\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Cancel my order\nAssistant: {\"intent\": \"cancel_order\", \"tool\": \"cancel\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Cancel the last order\nAssistant: {\"intent\": \"cancel_order\", \"tool\": \"cancel\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Stop my purchase\nAssistant: {\"intent\": \"cancel_order\", \"tool\": \"cancel\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Recommend laptops for coding\nAssistant: {\"intent\": \"recommendation\", \"tool\": \"recommend\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Suggest phones for gaming\nAssistant: {\"intent\": \"recommendation\", \"tool\": \"recommend\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Best headphones under 5000\nAssistant: {\"intent\": \"recommendation\", \"tool\": \"recommend\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Go to cart\nAssistant: {\"intent\": \"navigation\", \"tool\": \"navigate\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Open my orders\nAssistant: {\"intent\": \"navigation\", \"tool\": \"navigate\"}"}
+{"text": "You are an agentic AI. Respond ONLY in valid JSON.\nUser: Show wishlist\nAssistant: {\"intent\": \"navigation\", \"tool\": \"navigate\"}"}

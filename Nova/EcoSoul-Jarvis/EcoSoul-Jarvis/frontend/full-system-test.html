@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Complete System Test</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 30px 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 32px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .test-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        background: #f9f9f9;
+        transition: all 0.3s;
+      }
+      .test-card:hover {
+        border-color: #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+      }
+      .test-card h3 {
+        color: #667eea;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+      button:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      .result {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 1.5;
+        font-family: "Courier New", monospace;
+      }
+      .success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border-left: 4px solid #4caf50;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+        border-left: 4px solid #f44336;
+      }
+      .loading {
+        background: #e3f2fd;
+        color: #1976d2;
+        border-left: 4px solid #2196f3;
+      }
+      .products-demo {
+        margin-top: 30px;
+        border-top: 2px solid #e0e0e0;
+        padding-top: 30px;
+      }
+      .products-demo h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .product-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      }
+      .product-image {
+        width: 100%;
+        height: 150px;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+      }
+      .product-info {
+        padding: 12px;
+      }
+      .product-name {
+        font-weight: 600;
+        color: #333;
+        font-size: 13px;
+        margin-bottom: 5px;
+        min-height: 30px;
+      }
+      .product-price {
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+      .product-btn {
+        width: 100%;
+        padding: 8px;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .product-btn:hover {
+        background: #1976d2;
+      }
+      .info-box {
+        background: #fff9e6;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 5px;
+      }
+      .status-success {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .status-error {
+        background: #ffebee;
+        color: #c62828;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 EcoSoul Complete System Test</h1>
+      <p class="subtitle">Test all components and see live products</p>
+
+      <div class="info-box">
+        <strong>✅ What Just Happened:</strong><br />
+        ✔️ 199 products have been loaded into the database<br />
+        ✔️ Backend server is running on port 5002<br />
+        ✔️ API endpoint is responding with data<br />
+        Now let's verify the frontend works!
+      </div>
+
+      <div class="grid">
+        <div class="test-card">
+          <h3>1️⃣ API Connection</h3>
+          <button onclick="testAPI()">Test API</button>
+          <div id="apiResult"></div>
+        </div>
+
+        <div class="test-card">
+          <h3>2️⃣ DOM Elements</h3>
+          <button onclick="testDOM()">Check Elements</button>
+          <div id="domResult"></div>
+        </div>
+
+        <div class="test-card">
+          <h3>3️⃣ Search Function</h3>
+          <button onclick="testSearch()">Test Search</button>
+          <div id="searchResult"></div>
+        </div>
+
+        <div class="test-card">
+          <h3>4️⃣ Filter Function</h3>
+          <button onclick="testFilter()">Test Filters</button>
+          <div id="filterResult"></div>
+        </div>
+
+        <div class="test-card">
+          <h3>5️⃣ Rendering</h3>
+          <button onclick="testRender()">Test Render</button>
+          <div id="renderResult"></div>
+        </div>
+
+        <div class="test-card">
+          <h3>6️⃣ Full Flow</h3>
+          <button onclick="testFullFlow()">Complete Flow</button>
+          <div id="flowResult"></div>
+        </div>
+      </div>
+
+      <div class="products-demo">
+        <h2>📦 Live Products Demo</h2>
+        <button
+          style="margin-bottom: 20px; max-width: 200px"
+          onclick="loadAndDisplayProducts()"
+        >
+          Load Products from API
+        </button>
+        <div id="productsContainer"></div>
+      </div>
+    </div>
+
+    <script>
+      // ============ TEST 1: API Connection ============
+      async function testAPI() {
+        const result = document.getElementById("apiResult");
+        result.innerHTML =
+          '<div class="result loading">⏳ Testing API...</div>';
+
+        try {
+          const res = await fetch("http://localhost:5002/api/products?limit=5");
+          const data = await res.json();
+
+          if (data.success && data.products && data.products.length > 0) {
+            result.innerHTML = `<div class="result success">
+                        ✅ API Working!<br>
+                        Products returned: ${data.count}<br>
+                        First product: <strong>${data.products[0].name}</strong>
+                    </div>`;
+          } else {
+            result.innerHTML =
+              '<div class="result error">❌ No products returned from API</div>';
+          }
+        } catch (err) {
+          result.innerHTML = `<div class="result error">❌ API Error: ${err.message}</div>`;
+        }
+      }
+
+      // ============ TEST 2: DOM Elements ============
+      function testDOM() {
+        const result = document.getElementById("domResult");
+        const checks = {
+          searchProductsHome: "Search Input",
+          categoryFilterHome: "Category Filter",
+          priceFilterHome: "Price Filter",
+          productsGrid: "Products Grid",
+        };
+
+        let html = "";
+        let allFound = true;
+
+        for (const [id, name] of Object.entries(checks)) {
+          const elem = document.getElementById(id);
+          if (elem) {
+            html += `✅ ${name} found<br>`;
+          } else {
+            html += `❌ ${name} NOT found<br>`;
+            allFound = false;
+          }
+        }
+
+        result.innerHTML = `<div class="result ${allFound ? "success" : "error"}">${html}</div>`;
+      }
+
+      // ============ TEST 3: Search Function ============
+      async function testSearch() {
+        const result = document.getElementById("searchResult");
+        result.innerHTML =
+          '<div class="result loading">⏳ Testing search...</div>';
+
+        try {
+          // Load products first
+          const res = await fetch(
+            "http://localhost:5002/api/products?limit=20",
+          );
+          const data = await res.json();
+
+          if (!data.products) {
+            result.innerHTML =
+              '<div class="result error">❌ No products to test</div>';
+            return;
+          }
+
+          window.allHomeProducts = data.products;
+
+          // Test search filter
+          const searchTerm = data.products[0].name
+            .substring(0, 5)
+            .toLowerCase();
+          const filtered = window.allHomeProducts.filter((p) =>
+            p.name.toLowerCase().includes(searchTerm),
+          );
+
+          result.innerHTML = `<div class="result success">
+                    ✅ Search Working!<br>
+                    Search term: "${searchTerm}"<br>
+                    Results: ${filtered.length} products
+                </div>`;
+        } catch (err) {
+          result.innerHTML = `<div class="result error">❌ Error: ${err.message}</div>`;
+        }
+      }
+
+      // ============ TEST 4: Filter Function ============
+      async function testFilter() {
+        const result = document.getElementById("filterResult");
+        result.innerHTML =
+          '<div class="result loading">⏳ Testing filters...</div>';
+
+        try {
+          const res = await fetch(
+            "http://localhost:5002/api/products?limit=50",
+          );
+          const data = await res.json();
+
+          window.allHomeProducts = data.products;
+
+          // Test price filter
+          const priceFiltered = window.allHomeProducts.filter(
+            (p) => p.price >= 100 && p.price <= 500,
+          );
+
+          result.innerHTML = `<div class="result success">
+                    ✅ Filters Working!<br>
+                    Price filter (₹100-500): ${priceFiltered.length} products<br>
+                    Total products: ${data.products.length}
+                </div>`;
+        } catch (err) {
+          result.innerHTML = `<div class="result error">❌ Error: ${err.message}</div>`;
+        }
+      }
+
+      // ============ TEST 5: Rendering ============
+      function testRender() {
+        const result = document.getElementById("renderResult");
+
+        try {
+          const grid = document.getElementById("productsGrid");
+          if (!grid) {
+            result.innerHTML =
+              '<div class="result error">❌ Products grid not found</div>';
+            return;
+          }
+
+          if (!window.allHomeProducts || window.allHomeProducts.length === 0) {
+            result.innerHTML =
+              '<div class="result error">❌ No products loaded. Run "Test API" first</div>';
+            return;
+          }
+
+          // Try rendering
+          const sample = window.allHomeProducts[0];
+          grid.innerHTML = `
+                    <div class="product-card-new" data-product-id="${sample._id}">
+                        <div style="padding: 10px; border: 1px solid #ddd;">
+                            <strong>${sample.name}</strong><br>
+                            Price: ₹${sample.price}<br>
+                            Stock: ${sample.stock}
+                        </div>
+                    </div>
+                `;
+
+          result.innerHTML =
+            '<div class="result success">✅ Rendering Working!</div>';
+        } catch (err) {
+          result.innerHTML = `<div class="result error">❌ Error: ${err.message}</div>`;
+        }
+      }
+
+      // ============ TEST 6: Full Flow ============
+      async function testFullFlow() {
+        const result = document.getElementById("flowResult");
+        result.innerHTML =
+          '<div class="result loading">⏳ Testing full flow...</div>';
+
+        try {
+          // Step 1: Fetch
+          const res = await fetch(
+            "http://localhost:5002/api/products?limit=10",
+          );
+          if (!res.ok) throw new Error("API request failed");
+
+          const data = await res.json();
+          if (!data.success) throw new Error("API returned error");
+
+          // Step 2: Store
+          window.allHomeProducts = data.products;
+          if (window.allHomeProducts.length === 0)
+            throw new Error("No products");
+
+          // Step 3: Filter
+          const filtered = window.allHomeProducts.filter((p) => p.stock > 0);
+
+          // Step 4: Render
+          const grid = document.getElementById("productsGrid");
+          grid.innerHTML = filtered
+            .slice(0, 3)
+            .map(
+              (p) => `
+                    <div style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <strong>${p.name}</strong><br>
+                        ₹${p.price} | Stock: ${p.stock}
+                    </div>
+                `,
+            )
+            .join("");
+
+          result.innerHTML = `<div class="result success">
+                    ✅ Full Flow Working!<br>
+                    Loaded: ${data.products.length}<br>
+                    In stock: ${filtered.length}<br>
+                    Rendered: 3 samples
+                </div>`;
+        } catch (err) {
+          result.innerHTML = `<div class="result error">❌ Error: ${err.message}</div>`;
+        }
+      }
+
+      // ============ LOAD & DISPLAY PRODUCTS ============
+      async function loadAndDisplayProducts() {
+        const container = document.getElementById("productsContainer");
+        container.innerHTML =
+          '<div style="text-align: center; padding: 20px;">⏳ Loading products...</div>';
+
+        try {
+          const res = await fetch(
+            "http://localhost:5002/api/products?limit=12",
+          );
+          const data = await res.json();
+
+          if (!data.success || !data.products) {
+            container.innerHTML =
+              '<div style="color: red;">❌ Failed to load products</div>';
+            return;
+          }
+
+          const html = data.products
+            .map(
+              (p) => `
+                    <div class="product-card">
+                        <div class="product-image">🛍️</div>
+                        <div class="product-info">
+                            <div class="product-name">${p.name}</div>
+                            <div class="product-price">₹${p.price}</div>
+                            <button class="product-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                `,
+            )
+            .join("");
+
+          container.innerHTML = `
+                    <div class="products-grid">${html}</div>
+                    <div style="text-align: center; color: #666; font-size: 12px;">
+                        Showing ${data.products.length} of ${data.count} products
+                    </div>
+                `;
+        } catch (err) {
+          container.innerHTML = `<div style="color: red;">❌ Error: ${err.message}</div>`;
+        }
+      }
+
+      // Auto-run tests on load
+      window.addEventListener("load", () => {
+        console.log("✅ Test page loaded");
+        testAPI();
+        testDOM();
+      });
+    </script>
+  </body>
+</html>

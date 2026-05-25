@@ -1,0 +1,77 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Logs and temp files
+logs/
+*.log
+*.out
+*.err
+*.tmp
+*.temp
+.cache/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build outputs
+dist/
+build/
+coverage/
+.nyc_output/
+.next/
+.turbo/
+AIVS/mistral_adapter_v4/
+*.tgz
+*.zip
+*.tar
+*.gz
+
+# Repo-specific test/debug artifacts
+**/test-*.html
+**/test-*.js
+**/test-*.json
+**/quick-check.html
+**/direct-api-test.html
+
+# Python cache and virtualenvs
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+*.sqlite
+*.sqlite3
+*.db
+
+# Secrets and credentials
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+credentials.json
+secrets.json
+service-account*.json
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

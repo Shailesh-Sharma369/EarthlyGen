@@ -1,0 +1,440 @@
+/* ✅ Basic Layout */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+nav {
+  background-color: #4caf50;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+}
+
+/* ✅ Profile */
+.profile {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.sidebar {
+  background-color: #e0f3e0;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.profile-info {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4caf50;
+}
+
+.user-details h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #4caf50;
+}
+
+.user-details p {
+  margin: 5px 0;
+  color: #666;
+}
+
+#toggleStatus {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.bio {
+  margin-top: 30px;
+}
+
+/* ✅ Cart Section */
+
+.cart-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 80px;
+  background-color: #8bc34a;
+  border: 1px solid #ccc;
+  width: 260px;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  border-radius: 8px;
+}
+
+.user-cart ul {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.user-cart li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.cart-dropdown.hidden,
+#checkout-page.hidden {
+  display: none;
+}
+
+#cart-items,
+#checkout-products {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#cart-items li,
+#checkout-products div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.user-cart {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 2px solid #ddd;
+}
+
+.user-cart h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#user-cart-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+#user-cart-list li {
+  background-color: #f1f9f1;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#user-cart-total {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Mobile Responsive CSS */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  nav {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 8px 0;
+  }
+
+  nav input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  .profile {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .profile-info {
+    padding: 15px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-details h1 {
+    font-size: 20px;
+  }
+
+  .user-details p {
+    font-size: 0.9rem;
+  }
+
+  #toggleStatus {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .bio {
+    margin-top: 20px;
+  }
+
+  .cart-dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .user-cart {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .user-cart h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  #user-cart-list li {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  footer {
+    margin-top: 30px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  nav {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  nav ul {
+    gap: 8px;
+  }
+
+  nav ul li a {
+    font-size: 0.85rem;
+    padding: 6px 0;
+  }
+
+  nav input[type="text"] {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+
+  .profile {
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .sidebar {
+    padding: 12px;
+  }
+
+  .profile-info {
+    padding: 12px;
+  }
+
+  .profile-pic {
+    width: 70px;
+    height: 70px;
+  }
+
+  .user-details h1 {
+    font-size: 18px;
+  }
+
+  .user-details p {
+    font-size: 0.85rem;
+    margin: 3px 0;
+  }
+
+  #toggleStatus {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    width: 100%;
+  }
+
+  .bio {
+    margin-top: 15px;
+  }
+
+  .cart-dropdown {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .user-cart {
+    margin-top: 15px;
+    padding: 12px;
+  }
+
+  .user-cart h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .user-cart ul {
+    max-height: 150px;
+  }
+
+  #user-cart-list li {
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+  }
+
+  #user-cart-total {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    margin-top: 25px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 8px;
+  }
+
+  nav {
+    padding: 8px;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem;
+  }
+
+  nav input[type="text"] {
+    padding: 5px 6px;
+    font-size: 0.8rem;
+  }
+
+  .profile-header {
+    gap: 10px;
+  }
+
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-details h1 {
+    font-size: 16px;
+  }
+
+  .user-details p {
+    font-size: 0.8rem;
+  }
+
+  #toggleStatus {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+
+  .user-cart h2 {
+    font-size: 14px;
+  }
+
+  #user-cart-list li {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+}
