@@ -28,3 +28,17 @@ coverage/
 credentials.json
 secrets.json
 service-account*.json
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+
+# Videos
+*.mp4
+*.mov
+*.avi
+*.mkv

@@ -77,3 +77,18 @@ service-account*.json
 .env.backup
 *.bak
 *.old
+
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+
+# Videos
+*.mp4
+*.mov
+*.avi
+*.mkv
