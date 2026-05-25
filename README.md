@@ -158,8 +158,10 @@ EarthlyGen/
 ├── screenshots/
 ├── README.md
 └── .gitignore
-```
 
+```
+Working Flow
+<img width="1536" height="1024" alt="ChatGPT Image May 25, 2026, 04_17_36 PM" src="https://github.com/user-attachments/assets/9fbc737d-72b0-4bcf-9dfe-4e99ce7c1397" />
 ---
 
 ## Running the Project
